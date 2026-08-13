@@ -40,7 +40,7 @@ Saytdagi barcha ma'lumotlar `index.html` ichidagi **`CONFIG`** obyektida:
 `CONFIG.menuFallback` ga qator qo'shing:
 
 ```js
-{ name: "Taom nomi", price: "100 000 so'm", category: "Noodles", img: "images/taom.jpg", desc: "Qisqa tavsif" }
+{ name: "Taom nomi", price: "100 000 so'm", category: "Noodles", img: "/images/taom.jpg", desc: "Qisqa tavsif" }
 ```
 
 - **`img`** — foto bor bo'lsa ko'rsatiladi (faylni `images/` ga qo'ying).
@@ -50,7 +50,7 @@ Saytdagi barcha ma'lumotlar `index.html` ichidagi **`CONFIG`** obyektida:
 ### Yangi taom fotosini qo'shish
 
 1. Fotonni `images/` papkasiga qo'ying (nomida bo'sh joy bo'lishi mumkin — sayt o'zi hal qiladi).
-2. Menyudagi taomga `img: "images/fayl nomi.jpg"` deb yozing.
+2. Menyudagi taomga `img: "/images/fayl nomi.jpg"` deb yozing.
 
 ## Vercel'ga deploy (bepul)
 
