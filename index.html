@@ -1,0 +1,2686 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>Shikugyong — Samarqandda haqiqiy koreys taomlari</title>
+	<meta name="description"
+		content="Shikugyong — Samarqandda haqiqiy koreys taomlari ta'mini kashf eting. Naengmyeon, Bibimbap, Korean Fried Chicken, Jjamppong. Dine-in, takeout va no-contact delivery. Stol band qilish: +998 91 557 73 37.">
+	<meta property="og:title" content="Shikugyong — Samarqandda haqiqiy koreys taomlari">
+	<meta property="og:description"
+		content="Autentik koreys taomlari: Naengmyeon, Bibimbap, Korean Fried Chicken, Jjamppong va boshqalar. Samarqandda sizni kutamiz!">
+	<!-- og:image — sayt onlayn joylashtirilganda mutlaq URL bilan almashtirilsin (masalan: https://shikugyong.uz/images/Hero%20CTA.png) -->
+	<meta property="og:image" content="images/Hero%20CTA.png">
+	<meta property="og:type" content="website">
+	<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+	<meta name="theme-color" content="#16181d">
+	<link rel="apple-touch-icon" href="images/logo.jpg">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--ink: #16181d;
+			--ink-2: #1e2128;
+			--ink-3: #2a2e37;
+			--cream: #faf6ef;
+			--cream-2: #f3ecdf;
+			--red: #e0332b;
+			--red-dark: #b01f19;
+			--gold: #d9a441;
+			--green: #4a5d4e;
+			--text: #2b2b30;
+			--muted: #6d6a63;
+			--white: #ffffff;
+			--radius: 18px;
+			--shadow: 0 10px 30px rgba(22, 24, 29, .12);
+			--font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+			--font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+			scroll-padding-top: 84px;
+		}
+
+		body {
+			font-family: var(--font-body);
+			color: var(--text);
+			background: var(--cream);
+			line-height: 1.6;
+			overflow-x: hidden;
+		}
+
+		body.nav-open {
+			overflow: hidden;
+		}
+
+		img {
+			max-width: 100%;
+			display: block;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		.container {
+			width: min(1160px, 92%);
+			margin-inline: auto;
+		}
+
+		.section {
+			padding: 88px 0;
+		}
+
+		.section-head {
+			text-align: center;
+			max-width: 680px;
+			margin: 0 auto 52px;
+		}
+
+		.eyebrow {
+			display: inline-block;
+			font-size: .78rem;
+			font-weight: 800;
+			letter-spacing: .16em;
+			text-transform: uppercase;
+			color: var(--red);
+			background: rgba(224, 51, 43, .08);
+			padding: 6px 14px;
+			border-radius: 100px;
+			margin-bottom: 14px;
+		}
+
+		.section-head h2 {
+			font-family: var(--font-display);
+			font-size: clamp(1.9rem, 4vw, 2.7rem);
+			color: var(--ink);
+			line-height: 1.15;
+			margin-bottom: 14px;
+		}
+
+		.section-head p {
+			color: var(--muted);
+			font-size: 1.02rem;
+		}
+
+		/* ============ NAV ============ */
+		.nav {
+			position: fixed;
+			inset: 0 0 auto 0;
+			z-index: 100;
+			padding: 18px 0;
+			transition: background .3s, box-shadow .3s, padding .3s;
+		}
+
+		.nav.scrolled {
+			box-shadow: 0 4px 24px rgba(0, 0, 0, .25);
+			padding: 12px 0;
+		}
+
+		/* Scroll'dagi fon va blur ::before ga ko'chirildi. Sabab: .nav da backdrop-filter
+		   bo'lsa, mobil menyu (.nav-links, position: fixed) viewport o'rniga nav qutisiga
+		   bog'lanib qoladi va "Manzil", "Stol band qilish" kabi havolalar ekranga yopishib qolardi. */
+		.nav::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: transparent;
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			opacity: 0;
+			transition: opacity .3s, background .3s;
+			pointer-events: none;
+			z-index: -1;
+		}
+
+		.nav.scrolled::before {
+			background: rgba(22, 24, 29, .92);
+			opacity: 1;
+		}
+
+		.nav-inner {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+		}
+
+		.brand {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			color: var(--white);
+		}
+
+		.brand-logo {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			object-fit: cover;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, .35);
+		}
+
+		.brand-name {
+			font-weight: 800;
+			font-size: 1.18rem;
+			letter-spacing: .02em;
+			line-height: 1.1;
+		}
+
+		.brand-name small {
+			display: block;
+			font-size: .62rem;
+			font-weight: 600;
+			opacity: .75;
+			letter-spacing: .14em;
+			text-transform: uppercase;
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 26px;
+		}
+
+		.nav-links a:not(.btn) {
+			color: rgba(255, 255, 255, .85);
+			font-weight: 600;
+			font-size: .92rem;
+			position: relative;
+			padding: 4px 0;
+			transition: color .25s;
+		}
+
+		.nav-links a:not(.btn)::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			height: 2px;
+			width: 0;
+			background: var(--gold);
+			transition: width .3s ease;
+		}
+
+		.nav-links a:not(.btn):hover {
+			color: #fff;
+		}
+
+		.nav-links a:not(.btn):hover::after {
+			width: 100%;
+		}
+
+		.nav-toggle {
+			display: none;
+			background: none;
+			border: 0;
+			cursor: pointer;
+			width: 42px;
+			height: 42px;
+			border-radius: 12px;
+			position: relative;
+			z-index: 120;
+		}
+
+		.nav-toggle span {
+			display: block;
+			width: 22px;
+			height: 2px;
+			background: #fff;
+			margin: 5px auto;
+			border-radius: 2px;
+			transition: transform .3s, opacity .3s;
+		}
+
+		.nav-toggle.open span:nth-child(1) {
+			transform: translateY(7px) rotate(45deg);
+		}
+
+		.nav-toggle.open span:nth-child(2) {
+			opacity: 0;
+		}
+
+		.nav-toggle.open span:nth-child(3) {
+			transform: translateY(-7px) rotate(-45deg);
+		}
+
+		/* ============ TIL TANLASH (LANG SWITCH) ============ */
+		.lang-switch {
+			position: relative;
+			flex: 0 0 auto;
+		}
+
+		.lang-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			font-family: var(--font-body);
+			font-weight: 700;
+			font-size: .82rem;
+			color: #fff;
+			background: rgba(255, 255, 255, .1);
+			border: 1px solid rgba(255, 255, 255, .2);
+			padding: 8px 13px;
+			border-radius: 100px;
+			cursor: pointer;
+			transition: background .25s, border-color .25s;
+			backdrop-filter: blur(6px);
+		}
+
+		.lang-btn:hover {
+			background: rgba(255, 255, 255, .18);
+			border-color: rgba(255, 255, 255, .35);
+		}
+
+		.lang-flag {
+			font-size: 1rem;
+			line-height: 1;
+		}
+
+		.lang-caret {
+			width: 13px;
+			height: 13px;
+			opacity: .8;
+			transition: transform .25s;
+		}
+
+		.lang-switch.open .lang-caret {
+			transform: rotate(180deg);
+		}
+
+		.lang-menu {
+			position: absolute;
+			top: calc(100% + 10px);
+			right: 0;
+			z-index: 130;
+			min-width: 178px;
+			background: rgba(22, 24, 29, .97);
+			backdrop-filter: blur(14px);
+			border: 1px solid rgba(255, 255, 255, .14);
+			border-radius: 14px;
+			padding: 7px;
+			box-shadow: 0 18px 40px rgba(0, 0, 0, .4);
+			opacity: 0;
+			transform: translateY(-8px) scale(.98);
+			pointer-events: none;
+			transition: opacity .22s ease, transform .22s ease;
+		}
+
+		.lang-switch.open .lang-menu {
+			opacity: 1;
+			transform: none;
+			pointer-events: auto;
+		}
+
+		.lang-menu button {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			width: 100%;
+			text-align: left;
+			font-family: var(--font-body);
+			font-size: .88rem;
+			font-weight: 600;
+			color: rgba(255, 255, 255, .88);
+			background: transparent;
+			border: 0;
+			border-radius: 9px;
+			padding: 9px 12px;
+			cursor: pointer;
+			transition: background .18s, color .18s;
+		}
+
+		.lang-menu button:hover {
+			background: rgba(255, 255, 255, .1);
+			color: #fff;
+		}
+
+		.lang-menu button.active {
+			background: linear-gradient(135deg, var(--red), var(--red-dark));
+			color: #fff;
+		}
+
+		/* ============ BUTTONS ============ */
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 9px;
+			font-family: var(--font-body);
+			font-weight: 700;
+			font-size: .95rem;
+			padding: 13px 26px;
+			border-radius: 100px;
+			border: 0;
+			cursor: pointer;
+			transition: transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease;
+			white-space: nowrap;
+		}
+
+		.btn-primary {
+			background: linear-gradient(135deg, var(--red), var(--red-dark));
+			color: #fff;
+			box-shadow: 0 8px 22px rgba(224, 51, 43, .38);
+		}
+
+		.btn-primary:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 12px 28px rgba(224, 51, 43, .5);
+		}
+
+		.btn-gold {
+			background: linear-gradient(135deg, #e2b355, var(--gold));
+			color: #1c1605;
+			box-shadow: 0 8px 22px rgba(217, 164, 65, .35);
+		}
+
+		.btn-gold:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 12px 28px rgba(217, 164, 65, .5);
+		}
+
+		.btn-outline {
+			background: transparent;
+			color: var(--white);
+			border: 2px solid rgba(255, 255, 255, .55);
+		}
+
+		.btn-outline:hover {
+			border-color: #fff;
+			background: rgba(255, 255, 255, .08);
+			transform: translateY(-2px);
+		}
+
+		.btn-whatsapp {
+			background: #25d366;
+			color: #06381b;
+			box-shadow: 0 8px 22px rgba(37, 211, 102, .35);
+		}
+
+		.btn-whatsapp:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 12px 28px rgba(37, 211, 102, .5);
+		}
+
+		.btn-telegram {
+			background: linear-gradient(135deg, #2aa9e0, #1d8bc4);
+			color: #fff;
+			box-shadow: 0 8px 22px rgba(42, 169, 224, .35);
+		}
+
+		.btn-telegram:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 12px 28px rgba(42, 169, 224, .5);
+		}
+
+		.btn svg {
+			width: 19px;
+			height: 19px;
+			flex: 0 0 auto;
+		}
+
+		/* ============ HERO ============ */
+		.hero {
+			position: relative;
+			color: var(--white);
+			background:
+				radial-gradient(1100px 520px at 85% -10%, rgba(224, 51, 43, .55), transparent 60%),
+				radial-gradient(800px 480px at -10% 110%, rgba(217, 164, 65, .28), transparent 60%),
+				linear-gradient(160deg, #101216 0%, var(--ink) 55%, var(--ink-2) 100%);
+			overflow: hidden;
+			padding: 172px 0 96px;
+		}
+
+		.hero-bg {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			opacity: .55;
+			z-index: 0;
+		}
+
+		.hero::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			z-index: 1;
+			background-image: radial-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px);
+			background-size: 26px 26px;
+			opacity: .5;
+		}
+
+		/* Hero CTA.png fon ustidagi matn o'qilishi uchun qoraytiruvchi qatlam */
+		.hero::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			z-index: 1;
+			background: linear-gradient(160deg, rgba(16, 18, 22, .78) 0%, rgba(16, 18, 22, .45) 45%, rgba(16, 18, 22, .85) 100%);
+		}
+
+		.hero-grid {
+			display: grid;
+			grid-template-columns: 1.08fr .92fr;
+			gap: 48px;
+			align-items: center;
+			position: relative;
+			z-index: 2;
+		}
+
+		.hero-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			background: rgba(255, 255, 255, .09);
+			border: 1px solid rgba(255, 255, 255, .16);
+			padding: 8px 16px;
+			border-radius: 100px;
+			font-size: .84rem;
+			font-weight: 600;
+			backdrop-filter: blur(6px);
+			margin-bottom: 22px;
+		}
+
+		.hero-badge .stars {
+			color: var(--gold);
+			letter-spacing: 2px;
+			font-size: .9rem;
+		}
+
+		.hero h1 {
+			font-family: var(--font-display);
+			font-size: clamp(2.3rem, 5.4vw, 3.7rem);
+			line-height: 1.08;
+			margin-bottom: 20px;
+			font-weight: 600;
+		}
+
+		.hero h1 em {
+			font-style: italic;
+			color: var(--gold);
+		}
+
+		.hero-tag {
+			font-size: 1.08rem;
+			color: rgba(255, 255, 255, .82);
+			max-width: 540px;
+			margin-bottom: 34px;
+		}
+
+		.hero-cta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 14px;
+			margin-bottom: 40px;
+		}
+
+		.hero-stats {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0;
+			border-top: 1px solid rgba(255, 255, 255, .14);
+			padding-top: 26px;
+		}
+
+		.stat {
+			padding-right: 34px;
+			margin-right: 34px;
+			border-right: 1px solid rgba(255, 255, 255, .14);
+		}
+
+		.stat:last-child {
+			border: 0;
+			margin: 0;
+			padding: 0;
+		}
+
+		.stat b {
+			display: block;
+			font-size: 1.55rem;
+			font-weight: 800;
+			line-height: 1.1;
+		}
+
+		.stat b .gold {
+			color: var(--gold);
+		}
+
+		.stat span {
+			font-size: .8rem;
+			color: rgba(255, 255, 255, .66);
+			letter-spacing: .04em;
+		}
+
+		.hero-visual {
+			position: relative;
+			display: grid;
+			place-items: center;
+		}
+
+		.hero-frame {
+			width: min(420px, 100%);
+			aspect-ratio: 1;
+			border-radius: 26px;
+			overflow: hidden;
+			position: relative;
+			box-shadow: 0 40px 90px rgba(0, 0, 0, .55);
+			border: 4px solid rgba(217, 164, 65, .65);
+		}
+
+		.hero-frame::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, transparent 55%, rgba(16, 18, 22, .45));
+			pointer-events: none;
+		}
+
+		.hero-frame img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.hero-chip {
+			position: absolute;
+			z-index: 3;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			background: rgba(22, 24, 29, .85);
+			border: 1px solid rgba(255, 255, 255, .16);
+			padding: 10px 16px;
+			border-radius: 14px;
+			font-size: .82rem;
+			font-weight: 700;
+			backdrop-filter: blur(8px);
+			box-shadow: 0 12px 30px rgba(0, 0, 0, .4);
+			animation: floaty 5s ease-in-out infinite;
+		}
+
+		.hero-chip .dot {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: #25d366;
+			box-shadow: 0 0 0 4px rgba(37, 211, 102, .22);
+		}
+
+		.chip-1 {
+			top: 8%;
+			left: -4%;
+			animation-delay: 0s;
+		}
+
+		.chip-2 {
+			bottom: 14%;
+			right: -6%;
+			animation-delay: 1.4s;
+		}
+
+		.chip-3 {
+			bottom: -2%;
+			left: 6%;
+			animation-delay: 2.6s;
+		}
+
+		@keyframes floaty {
+
+			0%,
+			100% {
+				transform: translateY(0);
+			}
+
+			50% {
+				transform: translateY(-9px);
+			}
+		}
+
+		/* ============ SERVICES ============ */
+		.services {
+			background: var(--cream);
+		}
+
+		.services-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 22px;
+		}
+
+		.service-card {
+			background: var(--white);
+			border-radius: var(--radius);
+			padding: 30px 26px;
+			box-shadow: var(--shadow);
+			border: 1px solid rgba(22, 24, 29, .05);
+			transition: transform .28s ease, box-shadow .28s ease;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.service-card::before {
+			content: "";
+			position: absolute;
+			inset: 0 0 auto 0;
+			height: 4px;
+			background: linear-gradient(90deg, var(--red), var(--gold));
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform .35s ease;
+		}
+
+		.service-card:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 18px 40px rgba(22, 24, 29, .16);
+		}
+
+		.service-card:hover::before {
+			transform: scaleX(1);
+		}
+
+		.service-icon {
+			width: 58px;
+			height: 58px;
+			border-radius: 16px;
+			display: grid;
+			place-items: center;
+			font-size: 1.6rem;
+			margin-bottom: 18px;
+			background: linear-gradient(135deg, rgba(224, 51, 43, .1), rgba(217, 164, 65, .14));
+		}
+
+		.service-card h3 {
+			font-size: 1.12rem;
+			color: var(--ink);
+			margin-bottom: 8px;
+		}
+
+		.service-card p {
+			color: var(--muted);
+			font-size: .92rem;
+		}
+
+		/* ============ MENU ============ */
+		.menu {
+			background: linear-gradient(180deg, var(--cream-2), var(--cream));
+		}
+
+		.menu-filter {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 10px;
+			margin-bottom: 44px;
+		}
+
+		.filter-chip {
+			font-family: var(--font-body);
+			font-weight: 700;
+			font-size: .86rem;
+			padding: 9px 20px;
+			border-radius: 100px;
+			border: 1.5px solid rgba(22, 24, 29, .14);
+			background: transparent;
+			color: var(--text);
+			cursor: pointer;
+			transition: all .25s ease;
+		}
+
+		.filter-chip:hover {
+			border-color: var(--red);
+			color: var(--red);
+		}
+
+		.filter-chip.active {
+			background: var(--ink);
+			border-color: var(--ink);
+			color: #fff;
+		}
+
+		.menu-sections {
+			display: grid;
+			gap: 56px;
+		}
+
+		.menu-section {
+			display: grid;
+			gap: 24px;
+		}
+
+		.menu-cat-head {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
+
+		.menu-cat-head .cat-emoji {
+			width: 58px;
+			height: 58px;
+			border-radius: 16px;
+			display: grid;
+			place-items: center;
+			font-size: 1.7rem;
+			flex: 0 0 auto;
+			background: linear-gradient(135deg, rgba(224, 51, 43, .1), rgba(217, 164, 65, .16));
+			box-shadow: inset 0 0 0 1px rgba(217, 164, 65, .28);
+		}
+
+		.menu-cat-head h3 {
+			font-family: var(--font-display);
+			font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+			color: var(--ink);
+			line-height: 1.1;
+		}
+
+		.menu-cat-head .cat-desc {
+			font-size: .85rem;
+			color: var(--muted);
+			font-weight: 600;
+		}
+
+		.menu-section-count {
+			margin-left: auto;
+			background: var(--ink);
+			color: var(--gold);
+			font-size: .74rem;
+			font-weight: 800;
+			letter-spacing: .06em;
+			padding: 6px 14px;
+			border-radius: 100px;
+		}
+
+		.dish-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 20px;
+		}
+
+		.dish-card {
+			background: var(--white);
+			border-radius: var(--radius);
+			overflow: hidden;
+			box-shadow: var(--shadow);
+			border: 1px solid rgba(22, 24, 29, .05);
+			display: flex;
+			flex-direction: column;
+			transition: transform .28s ease, box-shadow .28s ease;
+		}
+
+		.dish-card:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 18px 40px rgba(22, 24, 29, .16);
+		}
+
+		.dish-photo {
+			position: relative;
+			aspect-ratio: 4 / 3;
+			overflow: hidden;
+			background: var(--cream-2);
+		}
+
+		.dish-photo img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform .5s ease;
+		}
+
+		.dish-card:hover .dish-photo img {
+			transform: scale(1.05);
+		}
+
+		.dish-tag {
+			position: absolute;
+			top: 12px;
+			left: 12px;
+			z-index: 2;
+			background: rgba(16, 18, 22, .74);
+			color: #fff;
+			font-size: .66rem;
+			font-weight: 800;
+			letter-spacing: .08em;
+			text-transform: uppercase;
+			padding: 5px 12px;
+			border-radius: 100px;
+			backdrop-filter: blur(6px);
+		}
+
+		/* Fotosiz taomlar — stilizatsiya qilingan placeholder kartochka */
+		.dish-ph {
+			position: relative;
+			display: grid;
+			place-items: center;
+			background:
+				radial-gradient(160px 110px at 20% 15%, rgba(217, 164, 65, .28), transparent 60%),
+				radial-gradient(200px 140px at 85% 90%, rgba(224, 51, 43, .32), transparent 60%),
+				linear-gradient(150deg, #262a33, #16191f);
+		}
+
+		.dish-ph::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background-image: radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px);
+			background-size: 22px 22px;
+			opacity: .6;
+		}
+
+		.dish-emoji {
+			font-size: 3.4rem;
+			position: relative;
+			z-index: 1;
+			filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .45));
+		}
+
+		.dish-ph-note {
+			position: absolute;
+			bottom: 12px;
+			right: 12px;
+			z-index: 1;
+			font-size: .64rem;
+			font-weight: 700;
+			letter-spacing: .06em;
+			text-transform: uppercase;
+			color: rgba(255, 255, 255, .55);
+			background: rgba(255, 255, 255, .08);
+			padding: 4px 10px;
+			border-radius: 100px;
+			backdrop-filter: blur(4px);
+		}
+
+		.dish-body {
+			padding: 18px 20px 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			flex: 1;
+		}
+
+		.dish-body h4 {
+			font-size: 1.02rem;
+			color: var(--ink);
+			font-weight: 800;
+			line-height: 1.3;
+		}
+
+		.dish-body p {
+			color: var(--muted);
+			font-size: .86rem;
+			line-height: 1.55;
+		}
+
+		.dish-prices {
+			margin-top: auto;
+			padding-top: 10px;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.dish-price {
+			font-weight: 800;
+			font-size: .84rem;
+			color: var(--red);
+			background: rgba(224, 51, 43, .07);
+			border: 1px solid rgba(224, 51, 43, .12);
+			padding: 6px 13px;
+			border-radius: 100px;
+			line-height: 1.25;
+		}
+
+		.dish-price small {
+			display: block;
+			font-size: .64rem;
+			font-weight: 600;
+			color: var(--muted);
+		}
+
+		.menu-note {
+			text-align: center;
+			margin-top: 44px;
+			color: var(--muted);
+			font-size: .92rem;
+		}
+
+		.menu-note a {
+			color: var(--red);
+			font-weight: 700;
+			text-decoration: underline;
+			text-underline-offset: 4px;
+		}
+
+		/* ============ ATMOSPHERE (interior) ============ */
+		.atmosphere {
+			background: var(--cream);
+		}
+
+		.atmosphere-grid {
+			display: grid;
+			grid-template-columns: 1.05fr .95fr;
+			gap: 48px;
+			align-items: center;
+		}
+
+		.atmosphere-visual {
+			position: relative;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 18px;
+			align-items: stretch;
+		}
+
+		.atm-photo {
+			position: relative;
+			border-radius: 22px;
+			overflow: hidden;
+			box-shadow: var(--shadow);
+		}
+
+		.atm-photo img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform .5s ease;
+		}
+
+		.atm-photo:hover img {
+			transform: scale(1.05);
+		}
+
+		.atm-photo::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, transparent 55%, rgba(16, 18, 22, .66));
+			pointer-events: none;
+		}
+
+		.atm-main {
+			grid-row: span 2;
+			min-height: 430px;
+		}
+
+		.atm-sub {
+			min-height: 200px;
+		}
+
+		.atm-caption {
+			position: absolute;
+			left: 18px;
+			bottom: 14px;
+			z-index: 2;
+			color: #fff;
+			font-weight: 800;
+			font-size: .95rem;
+			letter-spacing: .02em;
+		}
+
+		.atm-chip {
+			position: absolute;
+			top: -14px;
+			right: -8px;
+			z-index: 3;
+			background: var(--ink);
+			color: var(--gold);
+			border: 1px solid rgba(255, 255, 255, .18);
+			padding: 9px 16px;
+			border-radius: 100px;
+			font-size: .8rem;
+			font-weight: 700;
+			box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+			animation: floaty 5s ease-in-out infinite;
+		}
+
+		.atmosphere-text h2 {
+			font-family: var(--font-display);
+			font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+			color: var(--ink);
+			line-height: 1.15;
+			margin-bottom: 16px;
+		}
+
+		.atmosphere-text p {
+			color: var(--muted);
+			font-size: 1rem;
+			margin-bottom: 22px;
+			max-width: 460px;
+		}
+
+		.atmosphere-quote {
+			border-left: 4px solid var(--gold);
+			padding: 14px 20px;
+			background: var(--white);
+			border-radius: 0 14px 14px 0;
+			color: var(--text);
+			font-size: .95rem;
+			font-style: italic;
+			box-shadow: var(--shadow);
+			margin-bottom: 26px;
+		}
+
+		/* ============ REVIEWS ============ */
+		.reviews {
+			background: var(--ink);
+			color: var(--white);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.reviews::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			background: radial-gradient(900px 420px at 10% 0%, rgba(224, 51, 43, .28), transparent 60%),
+				radial-gradient(700px 380px at 95% 100%, rgba(217, 164, 65, .18), transparent 60%);
+		}
+
+		.reviews .section-head h2 {
+			color: #fff;
+		}
+
+		.reviews .section-head p {
+			color: rgba(255, 255, 255, .65);
+		}
+
+		.reviews .eyebrow {
+			color: var(--gold);
+			background: rgba(217, 164, 65, .12);
+		}
+
+		.reviews-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 22px;
+			position: relative;
+			z-index: 2;
+		}
+
+		.review-card {
+			background: rgba(255, 255, 255, .05);
+			border: 1px solid rgba(255, 255, 255, .1);
+			border-radius: var(--radius);
+			padding: 28px 26px;
+			backdrop-filter: blur(8px);
+			display: flex;
+			flex-direction: column;
+			transition: transform .28s ease, background .28s ease;
+		}
+
+		.review-card:hover {
+			transform: translateY(-6px);
+			background: rgba(255, 255, 255, .08);
+		}
+
+		.review-stars {
+			color: var(--gold);
+			letter-spacing: 3px;
+			font-size: 1.05rem;
+			margin-bottom: 14px;
+		}
+
+		.review-card blockquote {
+			font-size: .95rem;
+			line-height: 1.65;
+			color: rgba(255, 255, 255, .85);
+			flex: 1;
+		}
+
+		.review-author {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-top: 20px;
+			padding-top: 18px;
+			border-top: 1px solid rgba(255, 255, 255, .1);
+		}
+
+		.review-avatar {
+			width: 42px;
+			height: 42px;
+			border-radius: 50%;
+			flex: 0 0 auto;
+			display: grid;
+			place-items: center;
+			font-weight: 800;
+			font-size: .85rem;
+			color: #fff;
+			background: linear-gradient(135deg, var(--red), var(--red-dark));
+		}
+
+		.review-author b {
+			display: block;
+			font-size: .92rem;
+		}
+
+		.review-author span {
+			font-size: .78rem;
+			color: rgba(255, 255, 255, .55);
+		}
+
+		.reviews-source {
+			text-align: center;
+			margin-top: 44px;
+			font-size: .86rem;
+			color: rgba(255, 255, 255, .55);
+			position: relative;
+			z-index: 2;
+		}
+
+		.reviews-source b {
+			color: var(--gold);
+		}
+
+		.reviews-more {
+			text-align: center;
+			margin-top: 28px;
+			position: relative;
+			z-index: 2;
+		}
+
+		.reviews-more a {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-family: var(--font-body);
+			font-weight: 700;
+			font-size: .92rem;
+			color: var(--gold);
+			background: rgba(217, 164, 65, .1);
+			border: 1px solid rgba(217, 164, 65, .35);
+			padding: 12px 24px;
+			border-radius: 100px;
+			transition: background .25s, transform .25s;
+		}
+
+		.reviews-more a:hover {
+			background: rgba(217, 164, 65, .2);
+			transform: translateY(-2px);
+		}
+
+		/* ============ LOCATION ============ */
+		.location {
+			background: var(--cream);
+		}
+
+		.location-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 32px;
+			align-items: stretch;
+		}
+
+		.location-info {
+			background: var(--white);
+			border-radius: var(--radius);
+			padding: 38px 34px;
+			box-shadow: var(--shadow);
+			border: 1px solid rgba(22, 24, 29, .05);
+			display: flex;
+			flex-direction: column;
+		}
+
+		.location-info h3 {
+			font-family: var(--font-display);
+			font-size: 1.6rem;
+			color: var(--ink);
+			margin-bottom: 18px;
+		}
+
+		.loc-row {
+			display: flex;
+			gap: 14px;
+			padding: 14px 0;
+			border-bottom: 1px solid rgba(22, 24, 29, .07);
+		}
+
+		.loc-row:last-of-type {
+			border: 0;
+		}
+
+		.loc-icon {
+			width: 44px;
+			height: 44px;
+			border-radius: 12px;
+			flex: 0 0 auto;
+			display: grid;
+			place-items: center;
+			font-size: 1.2rem;
+			background: linear-gradient(135deg, rgba(224, 51, 43, .1), rgba(217, 164, 65, .14));
+		}
+
+		.loc-row b {
+			display: block;
+			font-size: .92rem;
+			color: var(--ink);
+		}
+
+		.loc-row span {
+			font-size: .88rem;
+			color: var(--muted);
+			line-height: 1.5;
+		}
+
+		.loc-row .missing {
+			color: var(--muted);
+			font-style: italic;
+		}
+
+		.location-map {
+			border-radius: var(--radius);
+			overflow: hidden;
+			box-shadow: var(--shadow);
+			min-height: 380px;
+			position: relative;
+		}
+
+		.location-map iframe {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+
+		/* ============ RESERVATION ============ */
+		.reserve {
+			position: relative;
+			padding: 96px 0;
+			background:
+				radial-gradient(1000px 460px at 90% -20%, rgba(255, 255, 255, .14), transparent 60%),
+				linear-gradient(135deg, var(--red-dark) 0%, var(--red) 55%, #c42620 100%);
+			color: #fff;
+			overflow: hidden;
+		}
+
+		.reserve::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			background-image: radial-gradient(rgba(255, 255, 255, .09) 1px, transparent 1px);
+			background-size: 24px 24px;
+			opacity: .6;
+		}
+
+		.reserve-inner {
+			position: relative;
+			z-index: 2;
+			text-align: center;
+			max-width: 760px;
+			margin-inline: auto;
+		}
+
+		.reserve .eyebrow {
+			color: #fff;
+			background: rgba(255, 255, 255, .16);
+		}
+
+		.reserve h2 {
+			font-family: var(--font-display);
+			font-size: clamp(2rem, 4.6vw, 3rem);
+			line-height: 1.1;
+			margin-bottom: 16px;
+		}
+
+		.reserve p.lead {
+			color: rgba(255, 255, 255, .9);
+			font-size: 1.05rem;
+			margin-bottom: 14px;
+		}
+
+		.reserve .hint {
+			color: rgba(255, 255, 255, .72);
+			font-size: .9rem;
+			margin-bottom: 34px;
+		}
+
+		.reserve-actions {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 14px;
+			margin-bottom: 40px;
+		}
+
+		.reserve-actions .btn {
+			min-width: 220px;
+		}
+
+		.reserve-social {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 12px;
+		}
+
+		.reserve-social .btn {
+			min-width: 170px;
+		}
+
+		.reserve-info {
+			margin-top: 40px;
+			padding-top: 30px;
+			border-top: 1px solid rgba(255, 255, 255, .22);
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 14px 40px;
+			font-size: .9rem;
+			color: rgba(255, 255, 255, .85);
+		}
+
+		.reserve-info span {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.reserve-info .missing {
+			opacity: .8;
+			font-style: italic;
+		}
+
+		/* ============ FOOTER ============ */
+		.footer {
+			background: #101216;
+			color: rgba(255, 255, 255, .75);
+			padding: 70px 0 0;
+		}
+
+		.footer-grid {
+			display: grid;
+			grid-template-columns: 1.4fr 1fr 1fr;
+			gap: 40px;
+			padding-bottom: 50px;
+		}
+
+		.footer .brand-name {
+			color: #fff;
+			margin-bottom: 12px;
+		}
+
+		.footer-about p {
+			font-size: .92rem;
+			max-width: 340px;
+			margin-bottom: 20px;
+		}
+
+		.footer h4 {
+			color: #fff;
+			font-size: .95rem;
+			margin-bottom: 18px;
+			letter-spacing: .04em;
+		}
+
+		.footer ul li {
+			margin-bottom: 11px;
+		}
+
+		.footer ul a {
+			font-size: .9rem;
+			transition: color .25s, padding-left .25s;
+		}
+
+		.footer ul a:hover {
+			color: var(--gold);
+			padding-left: 5px;
+		}
+
+		.footer-contact li {
+			display: flex;
+			gap: 10px;
+			font-size: .9rem;
+			line-height: 1.55;
+		}
+
+		.footer-contact .missing {
+			font-style: italic;
+			color: rgba(255, 255, 255, .5);
+		}
+
+		.footer-bottom {
+			border-top: 1px solid rgba(255, 255, 255, .1);
+			padding: 22px 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 10px;
+			font-size: .82rem;
+			color: rgba(255, 255, 255, .5);
+		}
+
+		.footer-bottom a {
+			color: var(--gold);
+		}
+
+		/* ============ MOBILE CTA ============ */
+		.mobile-cta {
+			display: none;
+			position: fixed;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 90;
+			background: rgba(16, 18, 22, .96);
+			backdrop-filter: blur(10px);
+			border-top: 1px solid rgba(255, 255, 255, .12);
+			padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+			gap: 12px;
+		}
+
+		.mobile-cta .btn {
+			flex: 1;
+			padding: 13px 12px;
+			font-size: .88rem;
+		}
+
+		/* ============ REVEAL ============ */
+		.reveal {
+			opacity: 0;
+			transform: translateY(28px);
+			transition: opacity .7s ease, transform .7s ease;
+		}
+
+		.reveal.visible {
+			opacity: 1;
+			transform: none;
+		}
+
+		.reveal.d1 {
+			transition-delay: .1s;
+		}
+
+		.reveal.d2 {
+			transition-delay: .2s;
+		}
+
+		.reveal.d3 {
+			transition-delay: .3s;
+		}
+
+		/* ============ RESPONSIVE ============ */
+		@media (max-width: 1024px) {
+			.hero-grid {
+				grid-template-columns: 1fr;
+				gap: 64px;
+			}
+
+			.hero-visual {
+				max-width: 460px;
+				margin-inline: auto;
+				width: 100%;
+			}
+
+			.services-grid,
+			.reviews-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.atmosphere-grid {
+				grid-template-columns: 1fr;
+				gap: 36px;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.section {
+				padding: 64px 0;
+			}
+
+			.nav-toggle {
+				display: block;
+			}
+
+			.nav-links {
+				position: fixed;
+				inset: 0;
+				z-index: 110;
+				background: rgba(16, 18, 22, .97);
+				backdrop-filter: blur(16px);
+				flex-direction: column;
+				justify-content: center;
+				gap: 30px;
+				transform: translateY(-100%);
+				transition: transform .4s cubic-bezier(.7, 0, .3, 1);
+			}
+
+			.nav-links.open {
+				transform: translateY(0);
+			}
+
+			.nav-links a:not(.btn) {
+				font-size: 1.25rem;
+				color: #fff;
+			}
+
+			.hero {
+				padding: 140px 0 72px;
+			}
+
+			.hero-stats {
+				gap: 18px 30px;
+			}
+
+			.stat {
+				padding-right: 0;
+				margin-right: 0;
+				border: 0;
+			}
+
+			.services-grid,
+			.reviews-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.dish-grid {
+				grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+				gap: 14px;
+			}
+
+			.atm-main {
+				min-height: 300px;
+			}
+
+			.atm-sub {
+				min-height: 150px;
+			}
+
+			.location-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.location-map {
+				min-height: 320px;
+			}
+
+			.reserve-actions .btn,
+			.reserve-social .btn {
+				min-width: 100%;
+			}
+
+			.footer-grid {
+				grid-template-columns: 1fr;
+				gap: 32px;
+			}
+
+			body {
+				padding-bottom: 0;
+			}
+
+			.mobile-cta {
+				display: flex;
+			}
+
+			body.has-mobile-cta .footer {
+				padding-bottom: 90px;
+			}
+
+			.chip-1 {
+				left: 0;
+			}
+
+			.chip-2 {
+				right: 0;
+			}
+		}
+
+		@media (max-width: 560px) {
+			.dish-grid {
+				grid-template-columns: 1fr 1fr;
+				gap: 12px;
+			}
+
+			.dish-body {
+				padding: 12px 13px 14px;
+				gap: 5px;
+			}
+
+			.dish-body h4 {
+				font-size: .9rem;
+			}
+
+			.dish-body p {
+				display: none;
+			}
+
+			.dish-photo {
+				aspect-ratio: 1 / 1;
+			}
+
+			.dish-emoji {
+				font-size: 2.2rem;
+			}
+
+			.dish-tag {
+				font-size: .6rem;
+				padding: 4px 9px;
+			}
+
+			.menu-section-count {
+				display: none;
+			}
+
+			.section {
+				padding: 56px 0;
+			}
+
+			.section-head h2 {
+				font-size: 1.8rem;
+			}
+
+			.hero h1 {
+				font-size: 2.15rem;
+			}
+
+			.hero-tag {
+				font-size: .98rem;
+			}
+
+			.hero-cta .btn {
+				flex: 1 1 100%;
+			}
+
+			.hero-stats {
+				gap: 16px 22px;
+			}
+
+			.stat {
+				flex: 1 1 40%;
+				min-width: 0;
+			}
+
+			.stat b {
+				font-size: 1.3rem;
+			}
+
+			.filter-chip {
+				font-size: .8rem;
+				padding: 8px 15px;
+			}
+
+			.dish-price {
+				font-size: .78rem;
+				padding: 5px 10px;
+			}
+
+			.brand-name {
+				font-size: 1.05rem;
+			}
+
+			.reserve {
+				padding: 72px 0;
+			}
+		}
+
+		@media (max-width: 420px) {
+			.hero-chip {
+				font-size: .74rem;
+				padding: 8px 12px;
+			}
+
+			.chip-3 {
+				display: none;
+			}
+
+			.hero-badge {
+				font-size: .76rem;
+				padding: 7px 12px;
+			}
+
+			.nav-links a:not(.btn) {
+				font-size: 1.12rem;
+			}
+
+			.lang-btn {
+				padding: 7px 10px;
+				font-size: .78rem;
+			}
+
+			.mobile-cta .btn {
+				font-size: .8rem;
+				padding: 12px 8px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- ================= NAV ================= -->
+	<header class="nav" id="nav">
+		<div class="container nav-inner">
+			<a href="#bosh" class="brand">
+				<img src="images/logo.jpg" alt="Shikugyong logotipi" class="brand-logo">
+				<span class="brand-name">Shikugyong<small data-i18n="brand.sub">Korean Restaurant</small></span>
+			</a>
+			<nav class="nav-links" id="navLinks">
+				<a href="#bosh" data-i18n="nav.home">Bosh sahifa</a>
+				<a href="#menyu" data-i18n="nav.menu">Menyu</a>
+				<a href="#sharhlar" data-i18n="nav.reviews">Sharhlar</a>
+				<a href="#atmosfera" data-i18n="nav.atmosphere">Atmosfera</a>
+				<a href="#manzil" data-i18n="nav.location">Manzil</a>
+				<a href="#band-qilish" class="btn btn-primary" data-i18n="reserve.cta">Stol band qilish</a>
+			</nav>
+			<div class="lang-switch" id="langSwitch">
+				<button class="lang-btn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Tilni tanlash">
+					<span class="lang-flag" id="langFlag">🇺🇿</span>
+					<span class="lang-code" id="langCode">UZ</span>
+					<svg class="lang-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+				</button>
+				<div class="lang-menu" id="langMenu" role="listbox">
+					<button type="button" role="option" data-lang="uz">🇺🇿 O'zbekcha</button>
+					<button type="button" role="option" data-lang="ru">🇷🇺 Русский</button>
+					<button type="button" role="option" data-lang="en">🇬🇧 English</button>
+					<button type="button" role="option" data-lang="ko">🇰🇷 한국어</button>
+				</div>
+			</div>
+			<button class="nav-toggle" id="navToggle" aria-label="Menyuni ochish" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+		</div>
+	</header>
+
+	<main>
+		<!-- ================= HERO ================= -->
+		<section class="hero" id="bosh">
+			<!-- HERO FON: foydalanuvchi qo'shgan Hero CTA.png banner fon sifatida -->
+			<img src="images/Hero%20CTA.png" alt="" aria-hidden="true" class="hero-bg" fetchpriority="high">
+			<div class="container hero-grid">
+				<div class="hero-content">
+					<div class="hero-badge reveal">
+						<span class="stars" id="heroStars"></span>
+						<span id="heroRatingText"></span>
+					</div>
+					<h1 class="reveal d1" data-i18n-html="hero.title">Samarqandda <em>haqiqiy koreys</em> taomlari ta'mini kashf eting</h1>
+					<p class="hero-tag reveal d2" data-i18n="hero.tag">Naengmyeon, Bibimbap, Korean Fried Chicken, Jjamppong va boshqa autentik koreys
+						taomlari — restoranda (dine-in), olib ketish (takeout) yoki no-contact delivery orqali.</p>
+					<div class="hero-cta reveal d3">
+						<a href="#band-qilish" class="btn btn-primary">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+								stroke-linejoin="round">
+								<rect x="3" y="4" width="18" height="18" rx="2" />
+								<path d="M16 2v4M8 2v4M3 10h18" />
+							</svg>
+							<span data-i18n="reserve.cta">Stol band qilish</span>
+						</a>
+						<a href="#menyu" class="btn btn-outline" data-i18n="hero.ctaMenu">Menyuni ko'rish</a>
+					</div>
+					<div class="hero-stats reveal d3">
+						<div class="stat"><b id="heroRating"></b><span data-i18n="hero.statRating">Google reytingi</span></div>
+						<div class="stat"><b id="heroReviews"></b><span data-i18n="hero.statReviews">mijoz sharhi</span></div>
+						<!-- 23:00 — CONFIG.hours dagi tasdiqlangan ma'lumot (Google Maps: restoran 23:00 da yopiladi) -->
+						<div class="stat"><b>23:00</b><span data-i18n="hero.statClose">yopilish vaqti</span></div>
+						<div class="stat"><b data-i18n="hero.open">Ochiq</b><span data-i18n="hero.statStatus">hozingi holat</span></div>
+					</div>
+				</div>
+				<div class="hero-visual reveal d2">
+					<div class="hero-frame">
+						<img src="images/Hero%20CTA.png" alt="Shikugyong — koreys restorani" >
+					</div>
+					<div class="hero-chip chip-1"><span class="dot"></span><span data-i18n="hero.chipOpen">Hozir ochiq</span></div>
+					<div class="hero-chip chip-2">⭐ <span id="heroChipRating"></span> — Google</div>
+					<div class="hero-chip chip-3" data-i18n="hero.chip3">🍗 Chimaek &amp; Korean Chicken</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================= SERVICES ================= -->
+		<section class="services section" id="xizmatlar">
+			<div class="container">
+				<div class="section-head reveal">
+					<span class="eyebrow" data-i18n="services.eyebrow">Xizmatlar</span>
+					<h2 data-i18n="services.title">Sizga qulay bo'lgan usulni tanlang</h2>
+					<p data-i18n="services.sub">Shikugyong'da autentik koreys taomlaridan har qanday formatda bahramand bo'ling.</p>
+				</div>
+				<div class="services-grid">
+					<div class="service-card reveal">
+						<div class="service-icon">🍽️</div>
+						<h3 data-i18n="services.dinein.title">Restoranda (Dine-in)</h3>
+						<p data-i18n="services.dinein.text">Iliq va yoqimli atmosferada, Koreyadagidek autentik ta'm — sharhlarda doimiy e'tirof etiladi.</p>
+					</div>
+					<div class="service-card reveal d1">
+						<div class="service-icon">🥡</div>
+						<h3 data-i18n="services.takeout.title">Olib ketish (Takeout)</h3>
+						<p data-i18n="services.takeout.text">Taomingiz tayyor bo'lgach qo'ng'iroq qiling — olib ketishingiz uchun paketlab beramiz.</p>
+					</div>
+					<div class="service-card reveal d2">
+						<div class="service-icon">🛵</div>
+						<h3 data-i18n="services.delivery.title">No-contact delivery</h3>
+						<p data-i18n="services.delivery.text">Kontaktsiz yetkazib berish orqali sevimli koreys taomlaringizni uyingizda kuting.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================= MENU ================= -->
+		<section class="menu section" id="menyu">
+			<div class="container">
+				<div class="section-head reveal">
+					<span class="eyebrow" data-i18n="menu.eyebrow">Menyu</span>
+					<h2 data-i18n="menu.title">Tasdiqlangan narxlar bilan koreys menyusi</h2>
+					<p data-i18n="menu.sub">Barcha narxlar restoran menyusidan olingan va tasdiqlangan. Narxlar «so'm»da ko'rsatilgan.</p>
+				</div>
+				<div class="menu-filter reveal" id="menuFilter"></div>
+				<div class="menu-sections" id="menuSections"></div>
+				<p class="menu-note reveal" id="menuNote"></p>
+			</div>
+		</section>
+
+		<!-- ================= ATMOSPHERE (interior) ================= -->
+		<section class="atmosphere section" id="atmosfera">
+			<div class="container atmosphere-grid">
+				<div class="atmosphere-visual reveal d1">
+					<div class="atm-photo atm-main">
+						<img src="images/Jjamppong.jpg" alt="Jjamppong — achchiq dengiz mahsulotlari sho'rvasi" loading="lazy">
+						<span class="atm-caption">Jjamppong</span>
+					</div>
+					<div class="atm-photo atm-sub">
+						<img src="images/Naengmyeon.jpg" alt="Naengmyeon — sovuq koreys noodle" loading="lazy">
+						<span class="atm-caption">Naengmyeon</span>
+					</div>
+					<div class="atm-photo atm-sub">
+						<img src="images/Jjajangmyeon.jpg" alt="Jjajangmyeon — chunjang sousli noodle" loading="lazy">
+						<span class="atm-caption">Jjajangmyeon</span>
+					</div>
+					<div class="atm-chip" data-i18n="atm.chip">🍜 Imzo taomlarimiz</div>
+				</div>
+				<div class="atmosphere-text reveal d1">
+					<span class="eyebrow" data-i18n="atm.eyebrow">Atmosfera</span>
+					<h2 data-i18n="atm.title">Iliq muhit, chin dildan xizmat</h2>
+					<p data-i18n="atm.text">Mehmonlarimiz restoranimizni iliq va yoqimli atmosferasi hamda do'stona, e'tiborli xizmati uchun alohida
+						qadrlashadi.</p>
+					<div class="atmosphere-quote"><span data-i18n="atm.quote">“Autentik koreys taomlari, iliq atmosfera va do'stona, e'tiborli xizmat uchun
+						restoran yuqori baholangan — mijoz uni qayta-qayta tanlashini bildirgan.”</span><span
+							style="display:block;margin-top:8px;font-style:normal;font-weight:700;font-size:.8rem;color:var(--gold)" data-i18n="atm.quoteSrc">—
+							Google Maps sharhidan</span></div>
+					<a href="#band-qilish" class="btn btn-primary" data-i18n="reserve.cta">Stol band qilish</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================= REVIEWS ================= -->
+		<section class="reviews section" id="sharhlar">
+			<div class="container">
+				<div class="section-head reveal">
+					<span class="eyebrow" data-i18n="reviews.eyebrow">Sharhlar</span>
+					<h2 data-i18n="reviews.title">Mehmonlarimiz nima deydi</h2>
+					<p data-i18n="reviews.sub">Google Maps'dagi real mehmonlarning fikrlari.</p>
+				</div>
+				<div class="reviews-grid" id="reviewsGrid"></div>
+				<p class="reviews-source reveal" id="reviewsSource"></p>
+				<div class="reviews-more reveal" id="reviewsMore"></div>
+			</div>
+		</section>
+
+		<!-- ================= LOCATION ================= -->
+		<section class="location section" id="manzil">
+			<div class="container">
+				<div class="section-head reveal">
+					<span class="eyebrow" data-i18n="loc.eyebrow">Manzil</span>
+					<h2 data-i18n="loc.title">Bizni qayerdan topish mumkin?</h2>
+					<p data-i18n="loc.sub">Samarqand shahrida joylashganmiz — Google Maps orqali osongina yo'l topasiz.</p>
+				</div>
+				<div class="location-grid">
+					<div class="location-info reveal">
+						<h3>Shikugyong</h3>
+						<div class="loc-row">
+							<div class="loc-icon">📍</div>
+							<div><b data-i18n="loc.address">Manzil</b><span id="locAddress"></span></div>
+						</div>
+						<div class="loc-row">
+							<div class="loc-icon">🕒</div>
+							<div><b data-i18n="loc.hours">Ish vaqti</b><span id="locHours"></span></div>
+						</div>
+						<div class="loc-row">
+							<div class="loc-icon">📞</div>
+							<div><b data-i18n="loc.phone">Telefon</b><span id="locPhone"></span></div>
+						</div>
+					</div>
+					<div class="location-map reveal d1">
+						<iframe id="mapFrame" title="Shikugyong xaritada" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+							allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================= RESERVATION ================= -->
+		<section class="reserve" id="band-qilish">
+			<div class="container reserve-inner">
+				<span class="eyebrow reveal" data-i18n="reserve.eyebrow">Stol band qilish</span>
+				<h2 class="reveal d1" data-i18n="reserve.title">Stolingizni hozir band qiling</h2>
+				<p class="lead reveal d1" data-i18n="reserve.lead">Qo'ng'iroq qiling yoki WhatsApp orqali yozing — stolingizni bir necha daqiqada band
+					qilamiz.</p>
+				<p class="hint reveal d2" data-i18n="reserve.hint">Dine-in, takeout va no-contact delivery mavjud.</p>
+				<div class="reserve-actions reveal d2" id="reserveActions"></div>
+				<div class="reserve-social reveal d3" id="reserveSocial"></div>
+				<div class="reserve-info reveal d3">
+					<span>📍 <span id="reserveAddress"></span></span>
+					<span>🕒 <span id="reserveHours"></span></span>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- ================= FOOTER ================= -->
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-grid">
+				<div class="footer-about">
+					<a href="#bosh" class="brand brand-name">
+						<img src="images/logo.jpg" alt="Shikugyong logotipi" class="brand-logo">
+						<span>Shikugyong<small data-i18n="brand.sub">Korean Restaurant</small></span>
+					</a>
+					<p data-i18n="foot.about">Samarqandda haqiqiy koreys taomlari ta'mini kashf eting — autentik ta'm, iliq atmosfera va doimiy e'tiborli
+						xizmat.</p>
+					<a href="#band-qilish" class="btn btn-primary" data-i18n="reserve.cta">Stol band qilish</a>
+				</div>
+				<div>
+					<h4 data-i18n="foot.pages">Sahifalar</h4>
+					<ul>
+					<li><a href="#bosh" data-i18n="nav.home">Bosh sahifa</a></li>
+					<li><a href="#menyu" data-i18n="nav.menu">Menyu</a></li>
+					<li><a href="#sharhlar" data-i18n="nav.reviews">Sharhlar</a></li>
+					<li><a href="#atmosfera" data-i18n="nav.atmosphere">Atmosfera</a></li>
+					<li><a href="#manzil" data-i18n="nav.location">Manzil</a></li>
+					<li><a href="#band-qilish" data-i18n="reserve.cta">Stol band qilish</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 data-i18n="foot.contact">Aloqa</h4>
+					<ul class="footer-contact">
+						<li>📍 <span id="footerAddress"></span></li>
+						<li>📞 <span id="footerPhone"></span></li>
+						<li>🕒 <span id="footerHours"></span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<span>© <span id="year"></span> Shikugyong. <span data-i18n="foot.rights">Barcha huquqlar himoyalangan.</span></span>
+				<span id="footerCredit"></span>
+			</div>
+		</div>
+	</footer>
+
+	<!-- ================= MOBILE CTA ================= -->
+	<div class="mobile-cta" id="mobileCta"></div>
+
+	<script>
+		/* ================================================================
+			 CONFIG — barcha ma'lumotlar shu yerda. Yangilash uchun shu yerni tahrirlang.
+			 ================================================================ */
+		const CONFIG = {
+			brand: "Shikugyong",
+			tagline: "Samarqandda haqiqiy koreys taomlari ta'mini kashf eting",
+			city: "Samarkand",
+			phone: "+998 91 557 73 37",
+			whatsappText: "Salom, menyu bilan qiziqaman",
+			address: "100140, Samarkand, Samarqand Region, Uzbekistan, JWVP+49 Samarkand",
+			/* To'liq ish vaqti — ochilish vaqti [YETISHMAYDI], Google Maps faqat 23:00 da yopilishini ko'rsatadi */
+			hours: "[YETISHMAYDI] — Google Maps faqat 23:00 da yopilishini ko'rsatadi",
+			rating: "4.4",
+			reviewsCount: "236",
+			instagram: "",
+			telegram: "https://t.me/korean_restaurant",
+			mapEmbedSrc: "https://www.google.com/maps?q=100140%2C%20Samarkand%2C%20Samarqand%20Region%2C%20Uzbekistan%2C%20JWVP%2B49&z=15&output=embed",
+			mapsUrl: "https://www.google.com/maps/place/Shikugyong/@39.6428089,66.9333031,17z/data=!4m18!1m9!3m8!1s0x3f4d18dc6e13d443:0x4bd080daf5e174ee!2sShikugyong!8m2!3d39.6428089!4d66.935878!9m1!1b1!16s%2Fg%2F11c1q6zzm4!3m7!1s0x3f4d18dc6e13d443:0x4bd080daf5e174ee!8m2!3d39.6428089!4d66.935878!9m1!1b1!16s%2Fg%2F11c1q6zzm4?entry=ttu&g_ep=EgoyMDI2MDgxMC4wIKXMDSoASAFQAw%3D%3D",
+			portfolioLink: "",
+			menuSheetId: "SHEET_ID_shu_yerga", /* Google Sheet — keyin ulanadi */
+
+			menuFallback: [
+				/* --- Noodles (fotosuratlari bor) --- */
+				{ name: "Naengmyeon", price: "98 000 so'm", category: "Noodles", img: "images/Naengmyeon.jpg", desc: "Sovuq grechka noodle sho'rvasi — muzdek bulon va tuxum bilan" },
+				{ name: "Bibim Naengmyeon", price: "98 000 so'm", category: "Noodles", img: "images/Bibim Naengmyeon.jpg", desc: "Sovuq noodle, achchiq gochujang sousida aralashtiriladi" },
+				{ name: "Sogogi Jjamppong", price: "89 000 so'm", category: "Noodles", img: "images/Sogogi Jjamppong.jpg", desc: "Mollya go'shtli achchiq dengiz mahsulotlari sho'rvasi" },
+				{ name: "Jjamppong", price: "98 000 so'm", category: "Noodles", img: "images/Jjamppong.jpg", desc: "Achchiq koreys dengiz mahsulotlari noodle sho'rvasi" },
+				{ name: "Jjajangmyeon", price: "89 000 so'm", category: "Noodles", img: "images/Jjajangmyeon.jpg", desc: "Qora loviya pastasi (chunjang) sousli noodle" },
+				{ name: "Japchae", price: "89 000 so'm", category: "Noodles", img: "images/Japchae.jpg", desc: "Sabzavotlar bilan qovurilgan shisha noodle" },
+				{ name: "Yukgae Japchae", price: "89 000 so'm", category: "Noodles", img: "images/Yukgae Japchae.jpg", desc: "Go'shtli qovurilgan shisha noodle" },
+				{ name: "Ramyeon", price: "60 000 so'm", category: "Noodles", img: "images/Ramyeon.jpg", desc: "Klassik achchiq koreys noodle sho'rvasi" },
+				{ name: "Mild Ramyeon", price: "60 000 so'm", category: "Noodles", img: "images/Mild Ramyeon.jpg", desc: "Achchiq bo'lmagan ramyeon — bolalar uchun qulay" },
+				{ name: "Cheese Ramyeon", price: "65 000 so'm", category: "Noodles", img: "images/Cheese Ramyeon.jpg", desc: "Pishloq qo'shilgan qaymoqli ramyeon" },
+				/* --- Rice Bowl (fotosurati hali yo'q — placeholder ko'rinadi) --- */
+				{ name: "Ojingeo deopbap", price: "103 000 so'm", category: "Rice Bowl", desc: "Kalamar va sabzavotlar bilan qovurilgan guruch" },
+				{ name: "Bulgogi deopbap", price: "95 000 so'm", category: "Rice Bowl", desc: "Bulgogi mol go'shti bilan guruch kosasi" },
+				{ name: "Gochujang Bulgogi deopbap", price: "95 000 so'm", category: "Rice Bowl", desc: "Achchiq gochujang sousida mol go'shti va guruch" },
+				{ name: "Japchae deopbap", price: "98 000 so'm", category: "Rice Bowl", desc: "Japchae va guruch — to'yingan kombinatsiya" },
+				{ name: "Jjajang deopbap", price: "95 000 so'm", category: "Rice Bowl", desc: "Chunjang sousli qovurilgan guruch" },
+				{ name: "Bibimbap", price: "95 000 so'm", category: "Rice Bowl", desc: "Sabzavotlar, tuxum va gochujang bilan aralash guruch" },
+				/* --- Chicken (fotosurati hali yo'q — placeholder ko'rinadi) --- */
+				{ name: "Fried Chicken", price: "113 000 so'm", price2: "59 000 so'm", unit2: "0.5 kg", unit: "1 kg", category: "Chicken", desc: "Qarsildoq qovurilgan koreys tovuq" },
+				{ name: "Korean Sauce Chicken", price: "127 000 so'm", price2: "67 000 so'm", unit2: "0.5 kg", unit: "1 kg", category: "Chicken", desc: "Shirin-achchiq yangnyeom sousli tovuq" },
+				{ name: "Garlic Soy Sauce Chicken", price: "127 000 so'm", price2: "67 000 so'm", unit2: "0.5 kg", unit: "1 kg", category: "Chicken", desc: "Sarimsoq-soya sousli tovuq" },
+				{ name: "Pepper Paste Chicken", price: "127 000 so'm", price2: "61 000 so'm", unit2: "0.5 kg", unit: "1 kg", category: "Chicken", desc: "Achchiq gochujang pastali tovuq" },
+				{ name: "Chili Barbecue Chicken", price: "127 000 so'm", price2: "67 000 so'm", unit2: "0.5 kg", unit: "1 kg", category: "Chicken", desc: "Achchiq barbekyu sousli tovuq" },
+				{ name: "Suwon City Sauce Chicken Ribs", price: "127 000 so'm", price2: "67 000 so'm", unit2: "0.5 kg", unit: "1 kg", category: "Chicken", desc: "Suwon uslubidagi maxsus sousda tovuq" },
+				/* --- Hotpot / Jeongol (fotosurati hali yo'q — placeholder ko'rinadi) --- */
+				{ name: "Sogalbihaemul-Jeongol", price: "398 000 so'm", price2: "209 000 so'm", unit2: "2 persons", unit: "4 persons", category: "Hotpot / Jeongol", desc: "Mollya va dengiz mahsulotlari qozoni — 4 kishilik" },
+				{ name: "Chadolbagi kimchi jjigae-Jeongol", price: "350 000 so'm", price2: "180 000 so'm", unit2: "2 persons", unit: "4 persons", category: "Hotpot / Jeongol", desc: "Kimchi va mol go'shti bilan jjigae qozoni" },
+				{ name: "Dakgorytang", price: "350 000 so'm", price2: "180 000 so'm", unit2: "2 persons", unit: "4 persons", category: "Hotpot / Jeongol", desc: "Tovuqli issiq qozon sho'rvasi" },
+				{ name: "Donghae jjigae jeongol", price: "320 000 so'm", price2: "168 000 so'm", unit2: "2 persons", unit: "4 persons", category: "Hotpot / Jeongol", desc: "Dengiz mahsulotlari jjigae qozoni" }
+			],
+
+			reviews: [
+				{
+					author: "Nine “ORIENTHAI” 9999",
+					rating: "5",
+					text: "Mehmon restoranga uch kun ichida ikki marta tashrif buyurgan va taomlarni Koreyadagidek autentik deb baholagan. Banchanlarning narxi maqbul, ochiq havoda Chimaek qilish tajribasi esa ayniqsa yoqqan."
+				},
+				{
+					author: "MUSTAFA SERDAR KARAKAYA",
+					rating: "5",
+					text: "Taomlar, hatto yetkazib berishda ham, juda mazali ekani va delivery tez bo'lgani ta'kidlangan. Kalmarli stew, tuna gimbap, egg roll va salat alohida maqtalgan."
+				},
+				{
+					author: "Madina Pardaeva",
+					rating: "5",
+					text: "Restoran autentik koreys taomlari, iliq va yoqimli atmosfera hamda do'stona va e'tiborli xizmati uchun yuqori baholangan. Mehmon uni koreys taomlarini xohlaganida tez-tez tanlashini va boshqalarga tavsiya qilishini aytgan."
+				}
+			]
+		}
+
+		/* ---------------- Yordamchi funksiyalar ---------------- */
+		const $ = (id) => document.getElementById(id)
+		/* Fayl nomlaridagi bo'sh joylarni URL formatiga o'tkazadi (masalan: "Bibim Naengmyeon.jpg" → "Bibim%20Naengmyeon.jpg") */
+		const enc = (s) => String(s).replace(/ /g, "%20")
+		let io = null /* IntersectionObserver — pastda sozlanadi */
+
+		/* ================================================================
+		   I18N — 4 til: uz (o'zbekcha) · ru (русский) · en (english) · ko (한국어)
+		   ================================================================ */
+		const LANG_META = {
+			uz: { code: "UZ", flag: "🇺🇿", label: "O'zbekcha" },
+			ru: { code: "RU", flag: "🇷🇺", label: "Русский" },
+			en: { code: "EN", flag: "🇬🇧", label: "English" },
+			ko: { code: "KO", flag: "🇰🇷", label: "한국어" }
+		}
+		const LANGS = ["uz", "ru", "en", "ko"]
+
+		const I18N = {
+			uz: {
+				"meta.title": "Shikugyong — Samarqandda haqiqiy koreys taomlari",
+				"meta.desc": "Shikugyong — Samarqandda haqiqiy koreys taomlari ta'mini kashf eting. Naengmyeon, Bibimbap, Korean Fried Chicken, Jjamppong. Dine-in, takeout va no-contact delivery. Stol band qilish: +998 91 557 73 37.",
+				"brand.sub": "Korean Restaurant",
+				"lang.switchAria": "Tilni tanlash",
+				"nav.home": "Bosh sahifa", "nav.menu": "Menyu", "nav.reviews": "Sharhlar", "nav.atmosphere": "Atmosfera", "nav.location": "Manzil", "reserve.cta": "Stol band qilish",
+				"hero.title": "Samarqandda <em>haqiqiy koreys</em> taomlari ta'mini kashf eting",
+				"hero.tag": "Naengmyeon, Bibimbap, Korean Fried Chicken, Jjamppong va boshqa autentik koreys taomlari — restoranda (dine-in), olib ketish (takeout) yoki no-contact delivery orqali.",
+				"hero.ratingText": "Google Maps: {rating} · {count} ta sharh",
+				"hero.ctaMenu": "Menyuni ko'rish",
+				"hero.statRating": "Google reytingi", "hero.statReviews": "mijoz sharhi", "hero.statClose": "yopilish vaqti", "hero.statStatus": "hozingi holat",
+				"hero.open": "Ochiq", "hero.chipOpen": "Hozir ochiq", "hero.chip3": "🍗 Chimaek & Korean Chicken",
+				"services.eyebrow": "Xizmatlar",
+				"services.title": "Sizga qulay bo'lgan usulni tanlang",
+				"services.sub": "Shikugyong'da autentik koreys taomlaridan har qanday formatda bahramand bo'ling.",
+				"services.dinein.title": "Restoranda (Dine-in)",
+				"services.dinein.text": "Iliq va yoqimli atmosferada, Koreyadagidek autentik ta'm — sharhlarda doimiy e'tirof etiladi.",
+				"services.takeout.title": "Olib ketish (Takeout)",
+				"services.takeout.text": "Taomingiz tayyor bo'lgach qo'ng'iroq qiling — olib ketishingiz uchun paketlab beramiz.",
+				"services.delivery.title": "No-contact delivery",
+				"services.delivery.text": "Kontaktsiz yetkazib berish orqali sevimli koreys taomlaringizni uyingizda kuting.",
+				"menu.eyebrow": "Menyu",
+				"menu.title": "Tasdiqlangan narxlar bilan koreys menyusi",
+				"menu.sub": "Barcha narxlar restoran menyusidan olingan va tasdiqlangan. Narxlar «so'm»da ko'rsatilgan.",
+				"menu.filterAll": "Barchasi", "menu.count": "taom",
+				"menu.note": "Narxlar restoran menyusidan olingan. Savollar uchun: ",
+				"cats.Noodles": "Noodles", "cats.Rice Bowl": "Rice Bowl", "cats.Chicken": "Chicken", "cats.Hotpot / Jeongol": "Hotpot / Jeongol",
+				"catDesc.Noodles": "Naengmyeon · Ramyeon · Japchae", "catDesc.Rice Bowl": "Bibimbap · Deopbap", "catDesc.Chicken": "Fried Chicken · Yangnyeom", "catDesc.Hotpot / Jeongol": "Jeongol · Jjigae",
+				"dishes.Naengmyeon": "Sovuq grechka noodle sho'rvasi — muzdek bulon va tuxum bilan",
+				"dishes.Bibim Naengmyeon": "Sovuq noodle, achchiq gochujang sousida aralashtiriladi",
+				"dishes.Sogogi Jjamppong": "Mollya go'shtli achchiq dengiz mahsulotlari sho'rvasi",
+				"dishes.Jjamppong": "Achchiq koreys dengiz mahsulotlari noodle sho'rvasi",
+				"dishes.Jjajangmyeon": "Qora loviya pastasi (chunjang) sousli noodle",
+				"dishes.Japchae": "Sabzavotlar bilan qovurilgan shisha noodle",
+				"dishes.Yukgae Japchae": "Go'shtli qovurilgan shisha noodle",
+				"dishes.Ramyeon": "Klassik achchiq koreys noodle sho'rvasi",
+				"dishes.Mild Ramyeon": "Achchiq bo'lmagan ramyeon — bolalar uchun qulay",
+				"dishes.Cheese Ramyeon": "Pishloq qo'shilgan qaymoqli ramyeon",
+				"dishes.Ojingeo deopbap": "Kalamar va sabzavotlar bilan qovurilgan guruch",
+				"dishes.Bulgogi deopbap": "Bulgogi mol go'shti bilan guruch kosasi",
+				"dishes.Gochujang Bulgogi deopbap": "Achchiq gochujang sousida mol go'shti va guruch",
+				"dishes.Japchae deopbap": "Japchae va guruch — to'yingan kombinatsiya",
+				"dishes.Jjajang deopbap": "Chunjang sousli qovurilgan guruch",
+				"dishes.Bibimbap": "Sabzavotlar, tuxum va gochujang bilan aralash guruch",
+				"dishes.Fried Chicken": "Qarsildoq qovurilgan koreys tovuq",
+				"dishes.Korean Sauce Chicken": "Shirin-achchiq yangnyeom sousli tovuq",
+				"dishes.Garlic Soy Sauce Chicken": "Sarimsoq-soya sousli tovuq",
+				"dishes.Pepper Paste Chicken": "Achchiq gochujang pastali tovuq",
+				"dishes.Chili Barbecue Chicken": "Achchiq barbekyu sousli tovuq",
+				"dishes.Suwon City Sauce Chicken Ribs": "Suwon uslubidagi maxsus sousda tovuq",
+				"dishes.Sogalbihaemul-Jeongol": "Mollya va dengiz mahsulotlari qozoni — 4 kishilik",
+				"dishes.Chadolbagi kimchi jjigae-Jeongol": "Kimchi va mol go'shti bilan jjigae qozoni",
+				"dishes.Dakgorytang": "Tovuqli issiq qozon sho'rvasi",
+				"dishes.Donghae jjigae jeongol": "Dengiz mahsulotlari jjigae qozoni",
+				"atm.eyebrow": "Atmosfera", "atm.title": "Iliq muhit, chin dildan xizmat",
+				"atm.text": "Mehmonlarimiz restoranimizni iliq va yoqimli atmosferasi hamda do'stona, e'tiborli xizmati uchun alohida qadrlashadi.",
+				"atm.quote": "“Autentik koreys taomlari, iliq atmosfera va do'stona, e'tiborli xizmat uchun restoran yuqori baholangan — mijoz uni qayta-qayta tanlashini bildirgan.”",
+				"atm.quoteSrc": "— Google Maps sharhidan", "atm.chip": "🍜 Imzo taomlarimiz",
+				"reviews.eyebrow": "Sharhlar", "reviews.title": "Mehmonlarimiz nima deydi",
+				"reviews.sub": "Google Maps'dagi real mehmonlarning fikrlari.",
+				"reviews.sourceLine": "Google Maps bo'yicha umumiy reyting: {rating} ★ · {count} ta sharh",
+				"reviews.all": "Barcha sharhlarni ko'rish — Google Maps",
+				"reviews.label": "Google Maps sharhi",
+				"reviews.0": "Mehmon restoranga uch kun ichida ikki marta tashrif buyurgan va taomlarni Koreyadagidek autentik deb baholagan. Banchanlarning narxi maqbul, ochiq havoda Chimaek qilish tajribasi esa ayniqsa yoqqan.",
+				"reviews.1": "Taomlar, hatto yetkazib berishda ham, juda mazali ekani va delivery tez bo'lgani ta'kidlangan. Kalmarli stew, tuna gimbap, egg roll va salat alohida maqtalgan.",
+				"reviews.2": "Restoran autentik koreys taomlari, iliq va yoqimli atmosfera hamda do'stona va e'tiborli xizmati uchun yuqori baholangan. Mehmon uni koreys taomlarini xohlaganida tez-tez tanlashini va boshqalarga tavsiya qilishini aytgan.",
+				"loc.eyebrow": "Manzil", "loc.title": "Bizni qayerdan topish mumkin?",
+				"loc.sub": "Samarqand shahrida joylashganmiz — Google Maps orqali osongina yo'l topasiz.",
+				"loc.address": "Manzil", "loc.hours": "Ish vaqti", "loc.phone": "Telefon", "loc.plusCode": "Plus Code: ",
+				"reserve.eyebrow": "Stol band qilish", "reserve.title": "Stolingizni hozir band qiling",
+				"reserve.lead": "Qo'ng'iroq qiling yoki WhatsApp orqali yozing — stolingizni bir necha daqiqada band qilamiz.",
+				"reserve.hint": "Dine-in, takeout va no-contact delivery mavjud.",
+				"reserve.call": "Qo'ng'iroq qilish",
+				"hours.short": "Ochiq · 23:00 gacha", "hours.full": "Ochilish vaqti tasdiqlanmoqda · Yopilish: 23:00",
+				"foot.about": "Samarqandda haqiqiy koreys taomlari ta'mini kashf eting — autentik ta'm, iliq atmosfera va doimiy e'tiborli xizmat.",
+				"foot.pages": "Sahifalar", "foot.contact": "Aloqa", "foot.rights": "Barcha huquqlar himoyalangan.", "foot.credit": "Sayt: ",
+				"mobile.call": "Qo'ng'iroq"
+			},
+			ru: {
+				"meta.title": "Shikugyong — настоящая корейская кухня в Самарканде",
+				"meta.desc": "Shikugyong — откройте вкус настоящей корейской кухни в Самарканде. Нэнмён, Бибимбап, Korean Fried Chicken, Ччамппон. В ресторане, на вынос и бесконтактная доставка. Бронь стола: +998 91 557 73 37.",
+				"brand.sub": "Корейский ресторан",
+				"lang.switchAria": "Выбор языка",
+				"nav.home": "Главная", "nav.menu": "Меню", "nav.reviews": "Отзывы", "nav.atmosphere": "Атмосфера", "nav.location": "Адрес", "reserve.cta": "Забронировать стол",
+				"hero.title": "Откройте вкус <em>настоящей корейской</em> кухни в Самарканде",
+				"hero.tag": "Нэнмён, Бибимбап, Korean Fried Chicken, Ччамппон и другие аутентичные корейские блюда — в ресторане, на вынос или бесконтактной доставкой.",
+				"hero.ratingText": "Google Maps: {rating} · отзывов: {count}",
+				"hero.ctaMenu": "Смотреть меню",
+				"hero.statRating": "Рейтинг Google", "hero.statReviews": "отзывов клиентов", "hero.statClose": "время закрытия", "hero.statStatus": "текущий статус",
+				"hero.open": "Открыто", "hero.chipOpen": "Сейчас открыто", "hero.chip3": "🍗 Чимаек и жареная курица",
+				"services.eyebrow": "Услуги",
+				"services.title": "Выберите удобный для вас способ",
+				"services.sub": "Наслаждайтесь аутентичной корейской кухней в любом формате в Shikugyong.",
+				"services.dinein.title": "В ресторане (Dine-in)",
+				"services.dinein.text": "Аутентичный вкус, как в Корее, в тёплой и уютной атмосфере — как отмечают наши гости в отзывах.",
+				"services.takeout.title": "На вынос (Takeout)",
+				"services.takeout.text": "Позвоните, когда заказ будет готов — упакуем, и вы заберёте его с собой.",
+				"services.delivery.title": "Бесконтактная доставка",
+				"services.delivery.text": "Ждите любимые корейские блюда дома — доставка без контакта.",
+				"menu.eyebrow": "Меню",
+				"menu.title": "Корейское меню с подтверждёнными ценами",
+				"menu.sub": "Все цены взяты из меню ресторана и подтверждены. Цены указаны в сумах.",
+				"menu.filterAll": "Все", "menu.count": "блюд",
+				"menu.note": "Цены взяты из меню ресторана. Вопросы: ",
+				"cats.Noodles": "Лапша", "cats.Rice Bowl": "Рис в миске", "cats.Chicken": "Курица", "cats.Hotpot / Jeongol": "Горячий котелок / Чонголь",
+				"catDesc.Noodles": "Нэнмён · Рамён · Чапче", "catDesc.Rice Bowl": "Бибимбап · Допбап", "catDesc.Chicken": "Жареная курица · Яннём", "catDesc.Hotpot / Jeongol": "Чонголь · Ччигэ",
+				"dishes.Naengmyeon": "Холодный суп с гречневой лапшой — ледяной бульон и яйцо",
+				"dishes.Bibim Naengmyeon": "Холодная лапша, перемешанная с острым соусом кочхуджан",
+				"dishes.Sogogi Jjamppong": "Острый суп с морепродуктами и говядиной",
+				"dishes.Jjamppong": "Острый корейский суп с лапшой и морепродуктами",
+				"dishes.Jjajangmyeon": "Лапша с соусом из чёрной фасоли (чунджан)",
+				"dishes.Japchae": "Жареная стеклянная лапша с овощами",
+				"dishes.Yukgae Japchae": "Стеклянная лапша, жаренная с говядиной",
+				"dishes.Ramyeon": "Классический острый корейский суп с лапшой",
+				"dishes.Mild Ramyeon": "Рамён без остроты — подойдёт детям",
+				"dishes.Cheese Ramyeon": "Рамён со сливочным вкусом и сыром",
+				"dishes.Ojingeo deopbap": "Рис с кальмаром и овощами",
+				"dishes.Bulgogi deopbap": "Миска риса с говядиной бульгоги",
+				"dishes.Gochujang Bulgogi deopbap": "Говядина в остром соусе кочхуджан с рисом",
+				"dishes.Japchae deopbap": "Чапче с рисом — сытная комбинация",
+				"dishes.Jjajang deopbap": "Жареный рис с соусом чунджан",
+				"dishes.Bibimbap": "Рис с овощами, яйцом и кочхуджаном",
+				"dishes.Fried Chicken": "Хрустящая жареная корейская курица",
+				"dishes.Korean Sauce Chicken": "Курица в кисло-сладком соусе яннём",
+				"dishes.Garlic Soy Sauce Chicken": "Курица в чесночно-соевом соусе",
+				"dishes.Pepper Paste Chicken": "Курица в остром соусе кочхуджан",
+				"dishes.Chili Barbecue Chicken": "Курица в остром барбекю-соусе",
+				"dishes.Suwon City Sauce Chicken Ribs": "Курица в фирменном соусе в стиле Сувона",
+				"dishes.Sogalbihaemul-Jeongol": "Котелок с говядиной и морепродуктами — на 4 персон",
+				"dishes.Chadolbagi kimchi jjigae-Jeongol": "Ччигэ с кимчи и говядиной",
+				"dishes.Dakgorytang": "Горячий куриный суп-котелок",
+				"dishes.Donghae jjigae jeongol": "Ччигэ с морепродуктами",
+				"atm.eyebrow": "Атмосфера", "atm.title": "Тёплая атмосфера, искренний сервис",
+				"atm.text": "Наши гости особенно ценят ресторан за тёплую и уютную атмосферу, а также дружелюбное и внимательное обслуживание.",
+				"atm.quote": "«Аутентичная корейская кухня, тёплая атмосфера и дружелюбное, внимательное обслуживание — ресторан высоко оценён, и гость отмечает, что будет возвращаться сюда снова.»",
+				"atm.quoteSrc": "— из отзыва Google Maps", "atm.chip": "🍜 Наши фирменные блюда",
+				"reviews.eyebrow": "Отзывы", "reviews.title": "Что говорят наши гости",
+				"reviews.sub": "Мнения реальных гостей из Google Maps.",
+				"reviews.sourceLine": "Общий рейтинг в Google Maps: {rating} ★ · {count} отзывов",
+				"reviews.all": "Посмотреть все отзывы — Google Maps",
+				"reviews.label": "Отзыв Google Maps",
+				"reviews.0": "Гость посетил ресторан дважды за три дня и оценил блюда как аутентичные, как в Корее. Цены на дополнительные банчханы приемлемые, а опыт чимаека на открытом воздухе особенно понравился.",
+				"reviews.1": "Отмечено, что блюда, даже при доставке, были очень вкусными, а доставка — быстрой. Особо хвалят тушёного кальмара, гимбап с тунцом, яичные роллы и салат.",
+				"reviews.2": "Ресторан высоко оценён за аутентичную корейскую кухню, тёплую и уютную атмосферу, а также дружелюбное и внимательное обслуживание. Гость отмечает, что часто выбирает его, когда хочется корейской еды, и рекомендует другим.",
+				"loc.eyebrow": "Адрес", "loc.title": "Где нас найти?",
+				"loc.sub": "Мы находимся в Самарканде — легко найдёте нас через Google Maps.",
+				"loc.address": "Адрес", "loc.hours": "Часы работы", "loc.phone": "Телефон", "loc.plusCode": "Плюс-код: ",
+				"reserve.eyebrow": "Бронь стола", "reserve.title": "Забронируйте стол прямо сейчас",
+				"reserve.lead": "Позвоните или напишите в WhatsApp — забронируем стол за несколько минут.",
+				"reserve.hint": "Доступны: в ресторане, на вынос и бесконтактная доставка.",
+				"reserve.call": "Позвонить",
+				"hours.short": "Открыто · до 23:00", "hours.full": "Время открытия уточняется · Закрытие: 23:00",
+				"foot.about": "Откройте вкус настоящей корейской кухни в Самарканде — аутентичный вкус, тёплая атмосфера и всегда внимательный сервис.",
+				"foot.pages": "Страницы", "foot.contact": "Контакты", "foot.rights": "Все права защищены.", "foot.credit": "Сайт: ",
+				"mobile.call": "Звонок"
+			},
+			en: {
+				"meta.title": "Shikugyong — authentic Korean food in Samarkand",
+				"meta.desc": "Shikugyong — discover authentic Korean flavors in Samarkand. Naengmyeon, Bibimbap, Korean Fried Chicken, Jjamppong. Dine-in, takeout and no-contact delivery. Book a table: +998 91 557 73 37.",
+				"brand.sub": "Korean Restaurant",
+				"lang.switchAria": "Choose language",
+				"nav.home": "Home", "nav.menu": "Menu", "nav.reviews": "Reviews", "nav.atmosphere": "Atmosphere", "nav.location": "Location", "reserve.cta": "Book a table",
+				"hero.title": "Discover the taste of <em>authentic Korean</em> food in Samarkand",
+				"hero.tag": "Naengmyeon, Bibimbap, Korean Fried Chicken, Jjamppong and other authentic Korean dishes — dine-in, takeout or no-contact delivery.",
+				"hero.ratingText": "Google Maps: {rating} · {count} reviews",
+				"hero.ctaMenu": "View menu",
+				"hero.statRating": "Google rating", "hero.statReviews": "customer reviews", "hero.statClose": "closing time", "hero.statStatus": "current status",
+				"hero.open": "Open", "hero.chipOpen": "Open now", "hero.chip3": "🍗 Chimaek & Fried Chicken",
+				"services.eyebrow": "Services",
+				"services.title": "Choose what works best for you",
+				"services.sub": "Enjoy authentic Korean dishes in any format at Shikugyong.",
+				"services.dinein.title": "Dine-in",
+				"services.dinein.text": "Authentic Korean taste in a warm and cozy atmosphere — consistently praised in our reviews.",
+				"services.takeout.title": "Takeout",
+				"services.takeout.text": "Call us when your order is ready — we'll pack it up for you to collect.",
+				"services.delivery.title": "No-contact delivery",
+				"services.delivery.text": "Enjoy your favorite Korean dishes at home with contactless delivery.",
+				"menu.eyebrow": "Menu",
+				"menu.title": "Korean menu with confirmed prices",
+				"menu.sub": "All prices are taken from the restaurant menu and confirmed. Prices are in soums.",
+				"menu.filterAll": "All", "menu.count": "dishes",
+				"menu.note": "Prices from the restaurant menu. Questions: ",
+				"cats.Noodles": "Noodles", "cats.Rice Bowl": "Rice Bowl", "cats.Chicken": "Chicken", "cats.Hotpot / Jeongol": "Hotpot / Jeongol",
+				"catDesc.Noodles": "Naengmyeon · Ramyeon · Japchae", "catDesc.Rice Bowl": "Bibimbap · Deopbap", "catDesc.Chicken": "Fried Chicken · Yangnyeom", "catDesc.Hotpot / Jeongol": "Jeongol · Jjigae",
+				"dishes.Naengmyeon": "Cold buckwheat noodle soup — icy broth and egg",
+				"dishes.Bibim Naengmyeon": "Cold noodles tossed in spicy gochujang sauce",
+				"dishes.Sogogi Jjamppong": "Spicy seafood soup with beef",
+				"dishes.Jjamppong": "Spicy Korean seafood noodle soup",
+				"dishes.Jjajangmyeon": "Noodles with black bean paste (chunjang)",
+				"dishes.Japchae": "Stir-fried glass noodles with vegetables",
+				"dishes.Yukgae Japchae": "Stir-fried glass noodles with beef",
+				"dishes.Ramyeon": "Classic spicy Korean instant noodle soup",
+				"dishes.Mild Ramyeon": "Non-spicy ramyeon — great for kids",
+				"dishes.Cheese Ramyeon": "Creamy ramyeon with cheese",
+				"dishes.Ojingeo deopbap": "Rice bowl with squid and vegetables",
+				"dishes.Bulgogi deopbap": "Rice bowl with bulgogi beef",
+				"dishes.Gochujang Bulgogi deopbap": "Beef in spicy gochujang sauce with rice",
+				"dishes.Japchae deopbap": "Japchae and rice — a hearty combination",
+				"dishes.Jjajang deopbap": "Fried rice with chunjang sauce",
+				"dishes.Bibimbap": "Rice mixed with vegetables, egg and gochujang",
+				"dishes.Fried Chicken": "Crispy Korean fried chicken",
+				"dishes.Korean Sauce Chicken": "Chicken in sweet-spicy yangnyeom sauce",
+				"dishes.Garlic Soy Sauce Chicken": "Chicken in garlic soy sauce",
+				"dishes.Pepper Paste Chicken": "Chicken in spicy gochujang paste",
+				"dishes.Chili Barbecue Chicken": "Chicken in spicy barbecue sauce",
+				"dishes.Suwon City Sauce Chicken Ribs": "Chicken in Suwon-style signature sauce",
+				"dishes.Sogalbihaemul-Jeongol": "Hotpot with beef and seafood — serves 4",
+				"dishes.Chadolbagi kimchi jjigae-Jeongol": "Jjigae hotpot with kimchi and beef",
+				"dishes.Dakgorytang": "Hot chicken hotpot soup",
+				"dishes.Donghae jjigae jeongol": "Seafood jjigae hotpot",
+				"atm.eyebrow": "Atmosphere", "atm.title": "Warm atmosphere, heartfelt service",
+				"atm.text": "Our guests especially value the restaurant for its warm, cozy atmosphere and friendly, attentive service.",
+				"atm.quote": "“Authentic Korean dishes, warm atmosphere and friendly, attentive service — the restaurant is highly rated, and the guest says they will keep coming back.”",
+				"atm.quoteSrc": "— from a Google Maps review", "atm.chip": "🍜 Our signature dishes",
+				"reviews.eyebrow": "Reviews", "reviews.title": "What our guests say",
+				"reviews.sub": "Real guest opinions from Google Maps.",
+				"reviews.sourceLine": "Overall rating on Google Maps: {rating} ★ · {count} reviews",
+				"reviews.all": "See all reviews — Google Maps",
+				"reviews.label": "Google Maps review",
+				"reviews.0": "The guest visited the restaurant twice in three days and rated the dishes as authentic, just like in Korea. Extra banchan was reasonably priced, and the outdoor Chimaek experience was especially enjoyable.",
+				"reviews.1": "Dishes were very tasty even via delivery, and the delivery was fast. The squid stew, tuna gimbap, egg roll and salad were especially praised.",
+				"reviews.2": "The restaurant is highly rated for authentic Korean dishes, a warm and cozy atmosphere, and friendly, attentive service. The guest says they often choose it when craving Korean food and recommend it to others.",
+				"loc.eyebrow": "Location", "loc.title": "Where to find us?",
+				"loc.sub": "We are located in Samarkand — easily find us via Google Maps.",
+				"loc.address": "Address", "loc.hours": "Working hours", "loc.phone": "Phone", "loc.plusCode": "Plus Code: ",
+				"reserve.eyebrow": "Book a table", "reserve.title": "Book your table now",
+				"reserve.lead": "Call us or message us on WhatsApp — we'll book your table within minutes.",
+				"reserve.hint": "Dine-in, takeout and no-contact delivery available.",
+				"reserve.call": "Call now",
+				"hours.short": "Open · until 23:00", "hours.full": "Opening time TBC · Closes: 23:00",
+				"foot.about": "Discover authentic Korean flavors in Samarkand — authentic taste, warm atmosphere and consistently attentive service.",
+				"foot.pages": "Pages", "foot.contact": "Contact", "foot.rights": "All rights reserved.", "foot.credit": "Site: ",
+				"mobile.call": "Call"
+			},
+			ko: {
+				"meta.title": "시쿠경 — 사마르칸트에서 진짜 한국 요리",
+				"meta.desc": "시쿠경 — 사마르칸트에서 진짜 한국 요리의 맛을 만나보세요. 냉면, 비빔밥, 후라이드 치킨, 짬뽕. 매장, 포장, 비대면 배달. 예약: +998 91 557 73 37.",
+				"brand.sub": "한국 레스토랑",
+				"lang.switchAria": "언어 선택",
+				"nav.home": "홈", "nav.menu": "메뉴", "nav.reviews": "리뷰", "nav.atmosphere": "분위기", "nav.location": "위치", "reserve.cta": "예약하기",
+				"hero.title": "사마르칸트에서 <em>진짜 한국 요리</em>의 맛을 만나보세요",
+				"hero.tag": "냉면, 비빔밥, 후라이드 치킨, 짬뽕 등 정통 한국 요리 — 매장, 포장, 비대면 배달로 즐겨보세요.",
+				"hero.ratingText": "Google Maps: {rating} · 리뷰 {count}개",
+				"hero.ctaMenu": "메뉴 보기",
+				"hero.statRating": "구글 평점", "hero.statReviews": "고객 리뷰", "hero.statClose": "마감 시간", "hero.statStatus": "현재 상태",
+				"hero.open": "영업 중", "hero.chipOpen": "지금 영업 중", "hero.chip3": "🍗 치맥 & 후라이드 치킨",
+				"services.eyebrow": "서비스",
+				"services.title": "편리한 방법을 선택하세요",
+				"services.sub": "시쿠경에서 정통 한국 요리를 원하는 방식으로 즐기세요.",
+				"services.dinein.title": "매장 (Dine-in)",
+				"services.dinein.text": "따뜻하고 아늑한 분위기에서 한국의 정통 맛을 — 리뷰에서도 꾸준히 인정받고 있습니다.",
+				"services.takeout.title": "포장 (Takeout)",
+				"services.takeout.text": "음식이 준비되면 전화주세요 — 포장해서 드립니다.",
+				"services.delivery.title": "비대면 배달",
+				"services.delivery.text": "좋아하는 한국 요리를 집에서 비대면 배달로 즐기세요.",
+				"menu.eyebrow": "메뉴",
+				"menu.title": "확인된 가격의 한국 메뉴",
+				"menu.sub": "모든 가격은 레스토랑 메뉴에서 확인된 금액입니다. 가격은 숨(so'm)으로 표시됩니다.",
+				"menu.filterAll": "전체", "menu.count": "개",
+				"menu.note": "가격은 레스토랑 메뉴 기준입니다. 문의: ",
+				"cats.Noodles": "국수", "cats.Rice Bowl": "덮밥", "cats.Chicken": "치킨", "cats.Hotpot / Jeongol": "전골",
+				"catDesc.Noodles": "냉면 · 라면 · 잡채", "catDesc.Rice Bowl": "비빔밥 · 덮밥", "catDesc.Chicken": "후라이드 치킨 · 양념", "catDesc.Hotpot / Jeongol": "전골 · 찌개",
+				"dishes.Naengmyeon": "차가운 메밀국수 — 얼음 육수와 계란",
+				"dishes.Bibim Naengmyeon": "매운 고추장 양념에 비빈 차가운 국수",
+				"dishes.Sogogi Jjamppong": "쇠고기와 해산물이 들어간 매운 국물",
+				"dishes.Jjamppong": "매운 한국식 해산물 국수",
+				"dishes.Jjajangmyeon": "춘장 소스의 자장면",
+				"dishes.Japchae": "야채와 함께 볶은 당면",
+				"dishes.Yukgae Japchae": "쇠고기와 볶은 당면",
+				"dishes.Ramyeon": "클래식 매운 라면",
+				"dishes.Mild Ramyeon": "맵지 않은 라면 — 아이들에게 좋아요",
+				"dishes.Cheese Ramyeon": "치즈가 들어간 크리미한 라면",
+				"dishes.Ojingeo deopbap": "오징어와 야채 볶음 덮밥",
+				"dishes.Bulgogi deopbap": "불고기 덮밥",
+				"dishes.Gochujang Bulgogi deopbap": "매운 고추장 불고기 덮밥",
+				"dishes.Japchae deopbap": "잡채와 밥 — 든든한 조합",
+				"dishes.Jjajang deopbap": "춘장 소스 볶음밥",
+				"dishes.Bibimbap": "야채, 계란, 고추장과 비빈 밥",
+				"dishes.Fried Chicken": "바삭한 한국식 후라이드 치킨",
+				"dishes.Korean Sauce Chicken": "달콤매콤 양념 치킨",
+				"dishes.Garlic Soy Sauce Chicken": "마늘 간장 소스 치킨",
+				"dishes.Pepper Paste Chicken": "매운 고추장 치킨",
+				"dishes.Chili Barbecue Chicken": "매운 바비큐 소스 치킨",
+				"dishes.Suwon City Sauce Chicken Ribs": "수원식 시그니처 소스 치킨",
+				"dishes.Sogalbihaemul-Jeongol": "쇠고기와 해산물 전골 — 4인분",
+				"dishes.Chadolbagi kimchi jjigae-Jeongol": "김치와 쇠고기 찌개 전골",
+				"dishes.Dakgorytang": "닭고기 뚝배기 수프",
+				"dishes.Donghae jjigae jeongol": "해산물 찌개 전골",
+				"atm.eyebrow": "분위기", "atm.title": "따뜻한 분위기, 진심 어린 서비스",
+				"atm.text": "손님들은 따뜻하고 아늑한 분위기와 친절하고 세심한 서비스로 저희 레스토랑을 특히 높이 평가합니다.",
+				"atm.quote": "“정통 한국 요리, 따뜻한 분위기, 친절하고 세심한 서비스 — 높은 평가를 받았으며, 손님은 계속 다시 방문하겠다고 말했습니다.”",
+				"atm.quoteSrc": "— 구글 지도 리뷰에서", "atm.chip": "🍜 시그니처 메뉴",
+				"reviews.eyebrow": "리뷰", "reviews.title": "손님들의 이야기",
+				"reviews.sub": "구글 지도에 남긴 실제 손님들의 의견입니다.",
+				"reviews.sourceLine": "구글 지도 종합 평점: {rating} ★ · 리뷰 {count}개",
+				"reviews.all": "모든 리뷰 보기 — Google 지도",
+				"reviews.label": "구글 지도 리뷰",
+				"reviews.0": "손님이 사흘 동안 두 번 방문했으며 음식이 한국에서 먹는 것처럼 정통적이라고 평가했습니다. 추가 반찬 가격이 합리적이었고, 야외 치맥 경험이 특히 좋았다고 합니다.",
+				"reviews.1": "배달로 받은 음식도 매우 맛있었고 배달도 빨랐다고 합니다. 오징어 찌개, 참치 김밥, 에그롤, 샐러드가 특히 칭찬받았습니다.",
+				"reviews.2": "정통 한국 요리, 따뜻하고 아늑한 분위기, 친절하고 세심한 서비스로 높은 평가를 받았습니다. 손님은 한국 음식이 생각날 때 자주 찾고 다른 사람들에게도 추천한다고 합니다.",
+				"loc.eyebrow": "위치", "loc.title": "어디에서 찾을 수 있나요?",
+				"loc.sub": "사마르칸트에 위치해 있습니다 — 구글 지도로 쉽게 찾아오세요.",
+				"loc.address": "주소", "loc.hours": "영업시간", "loc.phone": "전화", "loc.plusCode": "플러스 코드: ",
+				"reserve.eyebrow": "예약하기", "reserve.title": "지금 바로 예약하세요",
+				"reserve.lead": "전화하거나 WhatsApp으로 문의하세요 — 몇 분 안에 예약해 드립니다.",
+				"reserve.hint": "매장, 포장, 비대면 배달 가능합니다.",
+				"reserve.call": "전화하기",
+				"hours.short": "영업 중 · 23:00까지", "hours.full": "오픈 시간 확인 중 · 마감: 23:00",
+				"foot.about": "사마르칸트에서 진짜 한국 요리의 맛을 만나보세요 — 정통 맛, 따뜻한 분위기, 항상 세심한 서비스.",
+				"foot.pages": "페이지", "foot.contact": "연락처", "foot.rights": "모든 권리 보유.", "foot.credit": "사이트: ",
+				"mobile.call": "전화"
+			}
+		}
+
+		/* Tanlangan til: localStorage → brauzer tili → uz */
+		let lang = localStorage.getItem("skg_lang")
+		if (!LANGS.includes(lang)) {
+			const navLang = (navigator.language || "uz").toLowerCase()
+			lang = navLang.startsWith("ru") ? "ru" : navLang.startsWith("ko") ? "ko" : navLang.startsWith("en") ? "en" : "uz"
+		}
+
+		/* Tarjima funksiyasi: I18N dagi yassi kalitni izlaydi (masalan: "nav.home") */
+		function t(key) {
+			return I18N[lang][key] ?? I18N.uz[key] ?? key
+		}
+
+		const phoneRaw = CONFIG.phone.replace(/[^0-9+]/g, "")
+		const telHref = "tel:" + phoneRaw
+		const waHref = "https://wa.me/" + phoneRaw.replace("+", "") + "?text=" + encodeURIComponent(CONFIG.whatsappText)
+		/* To'liq manzil — Plus Code alohida satrda ko'rsatiladi */
+		const plusCode = (CONFIG.address.match(/JWVP\+49/) || [""])[0]
+		const displayAddress = CONFIG.address.replace(/,?\s*JWVP\+49\s*Samarkand$/i, "").trim()
+
+		function starsHtml(rating) {
+			const n = Math.max(0, Math.min(5, Math.round(Number(rating) || 0)))
+			return "★".repeat(n) + "☆".repeat(5 - n)
+		}
+
+		/* ---------------- Nav ---------------- */
+		const nav = $("nav"), navLinks = $("navLinks"), navToggle = $("navToggle")
+		window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 30))
+		function setNavOpen(open) {
+			navLinks.classList.toggle("open", open)
+			navToggle.classList.toggle("open", open)
+			document.body.classList.toggle("nav-open", open)
+			navToggle.setAttribute("aria-expanded", String(open))
+		}
+		navToggle.addEventListener("click", () => setNavOpen(!navLinks.classList.contains("open")))
+		navLinks.addEventListener("click", (e) => {
+			if (e.target.closest("a")) setNavOpen(false)
+		})
+
+		/* ---------------- Menyu ---------------- */
+		const CATEGORIES = [
+			{ name: "Noodles", emoji: "🍜" },
+			{ name: "Rice Bowl", emoji: "🍚" },
+			{ name: "Chicken", emoji: "🍗" },
+			{ name: "Hotpot / Jeongol", emoji: "🍲" }
+		]
+		const filterEl = $("menuFilter")
+		let activeCat = "all"
+
+		function priceHtml(i) {
+			const chip = (p, u) => `<span class="dish-price">${p}${u ? `<small>${u}</small>` : ""}</span>`
+			return i.price2 ? chip(i.price, i.unit) + chip(i.price2, i.unit2) : chip(i.price, "")
+		}
+
+		function buildFilter() {
+			filterEl.innerHTML = '<button class="filter-chip" data-cat="all">' + t("menu.filterAll") + "</button>" +
+				CATEGORIES.map(c => '<button class="filter-chip" data-cat="' + c.name.replace(/"/g, "&quot;") + '">' + c.emoji + " " + t("cats." + c.name) + "</button>").join("")
+			const active = filterEl.querySelector('[data-cat="' + activeCat + '"]')
+			if (active) active.classList.add("active")
+		}
+
+		function renderMenu() {
+			const sections = CATEGORIES
+				.map(c => {
+					const items = CONFIG.menuFallback.filter(i => i.category === c.name)
+					if (!items.length) return ""
+					if (activeCat !== "all" && activeCat !== c.name) return ""
+					const catName = t("cats." + c.name)
+					const cards = items.map(i => {
+						const media = i.img
+							? `<div class="dish-photo"><img src="${enc(i.img)}" alt="${i.name}" loading="lazy"><span class="dish-tag">${c.emoji} ${catName}</span></div>`
+							: `<div class="dish-photo dish-ph"><span class="dish-emoji">${c.emoji}</span><span class="dish-ph-note">${c.emoji} ${catName}</span></div>`
+						const dKey = "dishes." + i.name
+						const desc = (() => { const v = t(dKey); return v && v !== dKey ? v : (i.desc || "") })()
+						return `
+            <article class="dish-card reveal visible">
+              ${media}
+              <div class="dish-body">
+                <h4>${i.name}</h4>
+                ${desc ? `<p>${desc}</p>` : ""}
+                <div class="dish-prices">${priceHtml(i)}</div>
+              </div>
+            </article>`
+					}).join("")
+					return `
+      <div class="menu-section reveal visible" data-cat="${c.name}">
+        <div class="menu-cat-head">
+          <span class="cat-emoji">${c.emoji}</span>
+          <div>
+            <h3>${catName}</h3>
+            <span class="cat-desc">${t("catDesc." + c.name)}</span>
+          </div>
+          <span class="menu-section-count">${items.length} ${t("menu.count")}</span>
+        </div>
+        <div class="dish-grid">${cards}</div>
+      </div>`
+				})
+				.join("")
+			$("menuSections").innerHTML = sections
+			observeReveals()
+		}
+
+		filterEl.addEventListener("click", (e) => {
+			const chip = e.target.closest(".filter-chip")
+			if (!chip) return
+			activeCat = chip.dataset.cat
+			buildFilter()
+			renderMenu()
+		})
+
+		/* ---------------- Dinamik bo'limlar (tilga qarab qayta render) ---------------- */
+		function renderDynamic() {
+			/* Hero */
+			$("heroStars").textContent = starsHtml(CONFIG.rating)
+			$("heroRatingText").textContent = t("hero.ratingText").replace("{rating}", CONFIG.rating).replace("{count}", CONFIG.reviewsCount)
+			$("heroRating").innerHTML = CONFIG.rating + '<span class="gold"> ★</span>'
+			$("heroReviews").textContent = CONFIG.reviewsCount
+			$("heroChipRating").textContent = CONFIG.rating
+
+			/* Menyu */
+			buildFilter()
+			renderMenu()
+			$("menuNote").innerHTML = t("menu.note") + '<a href="' + telHref + '">' + CONFIG.phone + "</a>"
+
+			/* Sharhlar */
+			$("reviewsGrid").innerHTML = CONFIG.reviews.map((r, idx) => {
+				const initials = r.author.split(" ").slice(0, 2)
+					.map(w => (w.replace(/[^A-Za-z\u00C0-\u017F]/g, "")[0] || "").toUpperCase())
+					.join("")
+				return `
+  <article class="review-card reveal d${idx % 3}">
+    <div class="review-stars">${starsHtml(r.rating)}</div>
+    <blockquote>“${t("reviews." + idx)}”</blockquote>
+    <div class="review-author">
+      <span class="review-avatar">${initials}</span>
+      <div><b>${r.author}</b><span>${t("reviews.label")}</span></div>
+    </div>
+  </article>`
+			}).join("")
+			$("reviewsSource").innerHTML = t("reviews.sourceLine").replace("{rating}", CONFIG.rating).replace("{count}", CONFIG.reviewsCount)
+			$("reviewsMore").innerHTML = '<a href="' + CONFIG.mapsUrl + '" target="_blank" rel="noopener">' + t("reviews.all") + " →</a>"
+			/* Yangi render qilingan sharh kartalari (.reveal) ko'rinishi uchun observer'ni qayta ulaymiz */
+			observeReveals()
+
+			/* Manzil */
+			$("locAddress").innerHTML = displayAddress + '<br><span class="missing">' + t("loc.plusCode") + plusCode + "</span>"
+			$("locHours").innerHTML = t("hours.short") + '<br><span class="missing">' + t("hours.full") + "</span>"
+			$("locPhone").innerHTML = '<a href="' + telHref + '" style="color:var(--red);font-weight:700">' + CONFIG.phone + "</a>"
+			$("mapFrame").src = CONFIG.mapEmbedSrc
+
+			/* Stol band qilish */
+			$("reserveActions").innerHTML = `
+  <a href="${telHref}" class="btn btn-gold">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    ${t("reserve.call")}
+  </a>
+  <a href="${waHref}" target="_blank" rel="noopener" class="btn btn-whatsapp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.53.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.83 9.83 0 0 1 2.9 6.99c0 5.45-4.44 9.89-9.9 9.89zm8.42-18.3A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.47-8.41z"/></svg>
+    WhatsApp
+  </a>`
+
+			/* Instagram / Telegram — faqat CONFIG'da qiymat bo'lsa ko'rinadi */
+			let socialHtml = ""
+			if (CONFIG.instagram) {
+				socialHtml += `<a href="${CONFIG.instagram}" target="_blank" rel="noopener" class="btn btn-outline">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+    Instagram</a>`
+			}
+			if (CONFIG.telegram) {
+				socialHtml += `<a href="${CONFIG.telegram}" target="_blank" rel="noopener" class="btn btn-telegram">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.3a1.5 1.5 0 0 0-2.05-1.26L2.9 10.28a1.5 1.5 0 0 0 .12 2.8l4.3 1.35 1.62 5.04a1.5 1.5 0 0 0 2.57.53l2.36-2.5 4.5 3.3a1.5 1.5 0 0 0 2.36-.82l3.2-15.1a1.5 1.5 0 0 0 0-.58zM9.9 13.65l8.5-5.4-6.98 6.6-.32 2.9-1.2-4.1z"/></svg>
+    Telegram</a>`
+			}
+			$("reserveSocial").innerHTML = socialHtml
+
+			$("reserveAddress").textContent = displayAddress
+			$("reserveHours").innerHTML = t("hours.short") + ' <span class="missing">(' + t("hours.full") + ")</span>"
+
+			/* Footer */
+			$("footerAddress").textContent = displayAddress
+			$("footerPhone").innerHTML = '<a href="' + telHref + '" style="color:var(--gold)">' + CONFIG.phone + "</a>"
+			$("footerHours").textContent = t("hours.short") + " · " + t("hours.full")
+			$("year").textContent = new Date().getFullYear()
+			if (CONFIG.portfolioLink) {
+				$("footerCredit").innerHTML = t("foot.credit") + '<a href="' + CONFIG.portfolioLink + '" target="_blank" rel="noopener">' + CONFIG.portfolioLink.replace(/^https?:\/\//, "").replace(/\/$/, "") + "</a>"
+			}
+
+			/* Mobile CTA */
+			$("mobileCta").innerHTML = `
+  <a href="${telHref}" class="btn btn-gold">📞 ${t("mobile.call")}</a>
+  <a href="${waHref}" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp</a>`
+			document.body.classList.add("has-mobile-cta")
+		}
+
+		/* ---------------- Tilni qo'llash ---------------- */
+		function applyLang(next) {
+			if (next && LANGS.includes(next)) {
+				lang = next
+				try { localStorage.setItem("skg_lang", lang) } catch (e) {}
+			}
+			document.documentElement.lang = lang
+			document.title = t("meta.title")
+			const metaDesc = document.querySelector('meta[name="description"]')
+			if (metaDesc) metaDesc.setAttribute("content", t("meta.desc"))
+			document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n) })
+			document.querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = t(el.dataset.i18nHtml) })
+			$("langFlag").textContent = LANG_META[lang].flag
+			$("langCode").textContent = LANG_META[lang].code
+			$("langBtn").setAttribute("aria-label", t("lang.switchAria"))
+			document.querySelectorAll(".lang-menu button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang))
+			renderDynamic()
+		}
+
+		/* ---------------- Til almashish ---------------- */
+		const langSwitch = $("langSwitch"), langBtn = $("langBtn"), langMenu = $("langMenu")
+		langBtn.addEventListener("click", (e) => {
+			e.stopPropagation()
+			const open = langSwitch.classList.toggle("open")
+			langBtn.setAttribute("aria-expanded", String(open))
+		})
+		langMenu.addEventListener("click", (e) => {
+			const b = e.target.closest("button[data-lang]")
+			if (!b) return
+			applyLang(b.dataset.lang)
+			langSwitch.classList.remove("open")
+			langBtn.setAttribute("aria-expanded", "false")
+		})
+		document.addEventListener("click", () => langSwitch.classList.remove("open"))
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") langSwitch.classList.remove("open")
+		})
+
+		/* ---------------- Mobile CTA ko'rinishi uchun ---------------- */
+		document.body.classList.add("has-mobile-cta")
+
+		/* ---------------- Reveal animatsiyalar ---------------- */
+		function observeReveals() {
+			if (io) io.disconnect()
+			io = new IntersectionObserver((entries) => {
+				entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target) } })
+			}, { threshold: 0.12 })
+			document.querySelectorAll(".reveal").forEach(el => io.observe(el))
+		}
+		observeReveals()
+		applyLang(lang)
+	</script>
+</body>
+
+</html>

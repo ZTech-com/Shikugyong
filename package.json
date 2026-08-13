@@ -1,0 +1,21 @@
+{
+  "name": "shikugyong",
+  "version": "1.0.0",
+  "description": "Shikugyong — Samarqanddagi koreys restorani sayti",
+  "main": "server.js",
+  "scripts": {
+    "test": "node --check server.js && node --check generate-images.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "restoran",
+    "koreys",
+    "samarqand"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "sharp": "^0.35.3"
+  }
+}
