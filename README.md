@@ -69,7 +69,7 @@ Saytdagi barcha ma'lumotlar `index.html` ichidagi **`CONFIG`** obyektida:
 ### Deploydan so'ng
 
 - `index.html` dagi `og:image` havolasini mutlaq URL'ga almashtiring:
-  `https://sizningdomen.uz/images/Hero%20CTA.png`
+  `https://sizningdomen.uz/images/Hero-CTA.png`
 - Ish vaqtini, telefonni tekshiring: `CONFIG` → `hours`, `phone`.
 - Xohlasangiz `CONFIG.instagram` ga Instagram havolangizni qo'shing — tugma avtomatik chiqadi.
 

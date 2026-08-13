@@ -8,21 +8,21 @@ yordamida menyuga ulaydi (fayl nomi taom nomiga mos keladi).
 | Fayl | Taom |
 |---|---|
 | `Naengmyeon.jpg` | Naengmyeon |
-| `Bibim Naengmyeon.jpg` | Bibim Naengmyeon |
-| `Sogogi Jjamppong.jpg` | Sogogi Jjamppong |
+| `Bibim-Naengmyeon.jpg` | Bibim Naengmyeon |
+| `Sogogi-Jjamppong.jpg` | Sogogi Jjamppong |
 | `Jjamppong.jpg` | Jjamppong |
 | `Jjajangmyeon.jpg` | Jjajangmyeon |
 | `Japchae.jpg` | Japchae |
-| `Yukgae Japchae.jpg` | Yukgae Japchae |
+| `Yukgae-Japchae.jpg` | Yukgae Japchae |
 | `Ramyeon.jpg` | Ramyeon |
-| `Mild Ramyeon.jpg` | Mild Ramyeon |
-| `Cheese Ramyeon.jpg` | Cheese Ramyeon |
+| `Mild-Ramyeon.jpg` | Mild Ramyeon |
+| `Cheese-Ramyeon.jpg` | Cheese Ramyeon |
 
 ## Boshqa fayllar
 
 | Fayl | Nima |
 |---|---|
-| `Hero CTA.png` | Hero bo'limi foni va ramkasi (katta banner) |
+| `Hero-CTA.png` | Hero bo'limi foni va ramkasi (katta banner) |
 | `logo.jpg` | Logotip (navbar, footer, favicon) |
 
 ## Fotosurati yo'q taomlar
