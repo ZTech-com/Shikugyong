@@ -78,3 +78,19 @@ Saytdagi barcha ma'lumotlar `index.html` ichidagi **`CONFIG`** obyektida:
 ```bash
 npm test   # server.js va generate-images.js sintaksisini tekshiradi
 ```
+
+## Xavfsizlik
+
+Sayt quyidagi xavfsizlik choralari bilan himoyalangan:
+
+- **Content-Security-Policy (CSP)** — `vercel.json` va `server.js` da sozlangan
+  (tashqi skriptlarni bloklaydi, Google Fonts va xarita iframe'iga ruxsat beradi).
+- **HSTS** — `Strict-Transport-Security` headeri, HTTPS majburiy (Vercel).
+- **X-Frame-Options / X-Content-Type-Options / Referrer-Policy / Permissions-Policy** headerlari.
+- **Path traversal himoyasi** — `server.js` faqat loyiha papkasidagi fayllarni
+  ko'rsatadi, noto'g'ri URL'lar (masalan `%zz`) serverni qulatmaydi.
+- **Maxfiy kalitlar** — `.env` fayllari `.gitignore` da, repo'ga tushmaydi.
+
+Saytda foydalanuvchi kiritadigan ma'lumot yo'q (barcha ma'lumotlar `CONFIG` da
+statik), shuning uchun XSS xavfi minimal. Yangi tashqi resurs (skript, font,
+iframe) qo'shsangiz — CSP'ni ham yangilang, aks holda u bloklanadi.

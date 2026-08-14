@@ -4,6 +4,11 @@ node_modules/
 # Vercel
 .vercel/
 
+# Environment / maxfiy kalitlar
+.env
+.env.*
+!.env.example
+
 # OS / editor
 .DS_Store
 Thumbs.db
