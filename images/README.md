@@ -31,6 +31,6 @@ Rice Bowl, Chicken va Hotpot / Jeongol taomlariga hali foto yo'q — sayt ular u
 chiroyli placeholder kartochka ko'rsatadi. Foto qo'shmoqchi bo'lsangiz:
 
 1. Fotonni shu papkaga qo'ying (masalan `Bibimbap.jpg`).
-2. `index.html` → `CONFIG.menuFallback` → o'sha taomga `img: "/images/Bibimbap.jpg"` qo'shing.
+2. `index.html` → `CONFIG.menuFallback` → o'sha taomga `img: "images/Bibimbap.jpg"` qo'shing (nisbiy yo'l).
 
 Fotodan so'ng sayt kartochkani avtomatik foto bilan ko'rsatadi. 🍜
